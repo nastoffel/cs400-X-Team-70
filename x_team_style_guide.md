@@ -1,8 +1,6 @@
 # X-Team 70 Style Guide
 
-Our team plans to be very considerate of consistant style. We heavily value the importance of common standards, because it functions as an
-integral component of communication, readability, and efficient cooperation. During scheduled group check-ins, we will overview each
-member's code and discusses how conventions can be maintained.
+<brief description of your team's opinion or philosophy regarding Style Guides>
 
 ## Naming conventions
 
@@ -10,14 +8,21 @@ member's code and discusses how conventions can be maintained.
 
 ### Examples
 * interfaces
+    NewInterface
 * classes
+    DescriptiveClass
 * exception types
+    FancyNewException
 * fields
+    niceCamel
 * methods
+    toCamelCase
 * parameters
+    superNiceParam
 * local variables
-* instance constants
-* class constants
+    count
+* constants
+    variable
 
 ## Commenting style for public and private members of a class or interface:
 
