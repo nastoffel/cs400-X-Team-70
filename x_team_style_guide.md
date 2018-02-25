@@ -5,25 +5,24 @@
 ## Naming conventions
 
 <brief statement describing your team's naming conventions>
-Here is some other really important stuff that is going to span multiple lines and 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
 ### Examples
 * interfaces
-    NewInterface
+    - NewInterface
 * classes
-    DescriptiveClass
+    - DescriptiveClass
 * exception types
-    FancyNewException
+    - FancyNewException
 * fields
-    niceCamel
+    - niceCamel
 * methods
-    toCamelCase
+    - toCamelCase
 * parameters
-    superNiceParam
+    - superNiceParam
 * local variables
-    count
+    - count
 * constants
-    variable
+    - variable
 
 ## Commenting style for public and private members of a class or interface:
 
