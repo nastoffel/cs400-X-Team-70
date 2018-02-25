@@ -5,12 +5,13 @@
    * What are the GitHub usernames of your team members?
        * GitHub username 1:snoberger
        * GitHub username 2:nastoffel
-       * GitHub username 3:
+       * GitHub username 3:jsteckling56783
        * GitHub username 4:
        * GitHub username 5:
    * When did you complete this exercise? 
       * 2/25/18
    * How long did it take your team to complete this exercise? 
+      *90 minutes
 
 ## Table of Contents
 
