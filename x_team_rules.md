@@ -27,7 +27,8 @@ Facebook messenger discussions, making sure that the confusion is discussed unti
 
 ## How we will back up each other to ensure that deadlines are not missed
 
-
+We will schedule check-in dates over the course of the project. If one of us is struggling to create their content, they will consult the 
+group and dask distribution will be reconsidered
 
 
 
