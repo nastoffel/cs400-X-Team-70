@@ -20,9 +20,9 @@
 * parameters
     - superNiceParam
 * local variables
-    - count
+    - muchWinning
 * constants
-    - variable
+    - REAL_GOOD_MULTIPLIER
 
 ## Commenting style for public and private members of a class or interface:
 
