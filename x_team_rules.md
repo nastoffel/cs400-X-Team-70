@@ -14,6 +14,7 @@ and missed deadlines.
 
 ## How will we will track progress (and follow-up) on completion of tasks
 
+### Create a new file in this repository for each project and check what changes were made.
 
 
 ## How will will communicate difficulties with a task assigned to us
