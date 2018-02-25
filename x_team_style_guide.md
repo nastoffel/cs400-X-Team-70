@@ -1,6 +1,8 @@
 # X-Team 70 Style Guide
 
-Our team plans to be very considerate of consistant style. We heavily value the importance of common standards, because it functions as an integral component of communication, readability, and efficient cooperation. During scheduled group check-ins, we will overview each member's code and discusses how conventions can be maintained.
+Our team plans to be very considerate of consistant style. We heavily value the importance of common standards, because it functions as an
+integral component of communication, readability, and efficient cooperation. During scheduled group check-ins, we will overview each
+member's code and discusses how conventions can be maintained.
 
 ## Naming conventions
 
