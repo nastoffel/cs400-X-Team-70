@@ -4,7 +4,7 @@ Our team plans to be very considerate of consistant style. We heavily value the 
 
 ## Naming conventions
 
-<brief statement describing your team's naming conventions>
+When deciding names, team members should try to name things as specifically as possible to increase smooth readability. Abbreviations, especially one-letter names or acronyms, should be avoided.
 
 ### Examples
 * interfaces
@@ -26,7 +26,7 @@ Our team plans to be very considerate of consistant style. We heavily value the 
 
 ## Commenting style for public and private members of a class or interface:
 
-<brief statement of your team's commenting style>
+In-line comments should be used to describe high-level algorithm choices and steps. Public methods, classes, and interfaces should include completed javadocs, which contain descriptions of parameters and return variables. Private methods should have header comments. Fields (member variables) should have inl-line comments. 
 
 ### Examples
 
@@ -36,6 +36,20 @@ Our team plans to be very considerate of consistant style. We heavily value the 
 * methods
 * coding style (brackets, horizontal, and vertical spacing) for:
   * if statements
+  		- Include a space on either side of a comparison operator (=, <, ect.)
+  		- When there is only one line of content, it should be put on the same line as the condition. i.e.
+			if(youAre != trash) singleNodeTree.height = 1;
+		- When there is an else statement, do not use in-line code. Put the word else on the line of the closing bracket. i.e.
+			if(temperature < coldnessThreshold(wisconsin)) {
+				putOnCoat();
+			} else {
+				beHappy();
+			}
+		- When content is multiple lines, place opening bracket on the same line as the condition. i.e.
+			if(event.equals(mifflin)) {
+				dontGoToThat(event);
+				beHealthy();
+			}
   * switch statement
   * while loops
   * for loops
