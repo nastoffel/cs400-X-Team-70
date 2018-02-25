@@ -40,11 +40,13 @@ In-line comments should be used to describe high-level algorithm choices and ste
     - When there is only one line of content, it should be put on the same line as the condition. i.e.
 	if(youAre != trash) singleNodeTree.height = 1;
     - When there is an else statement, do not use in-line code. Put the word else on the line of the closing bracket. i.e.
+```
 	if(temperature < coldnessThreshold(wisconsin)) {
 		putOnCoat();
 	} else {
 		beHappy();
 	}
+```
     - When content is multiple lines, place opening bracket on the same line as the condition. i.e.
 	if(event.equals(mifflin)) {
 		dontGoToThat(event);
