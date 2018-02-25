@@ -9,16 +9,17 @@ and will hopefully lead to productive team work with fewer conflicts
 and missed deadlines.
 
 ## How we will assign (and reassign) tasks
+  1. Collectively discuss high-level structure of the program.
   1. Split the work into divisible equal parts
-  2. Distribute by who says what they want first
-  3. Then give based on equality of workload and members' strengths and weaknesses
-  4. If two people want the same assignment, discuss and come to an agreement. Consult the whole group.
-  5. Worst case, rock paper scissors
+  1. Distribute by who says what they want first
+  1. Then give based on equality of workload and members' strengths and weaknesses
+  1. If two people want the same assignment, discuss and come to an agreement. Consult the whole group.
+  1. Worst case, rock paper scissors
 
 
 ## How will we will track progress (and follow-up) on completion of tasks
 
-Create a new file in this repository for each project and check what changes were made.
+Create a new file in this repository for each project and check what changes were made. We will set small deadlines for various sections of the assignment (i.e. implementation of insert method must have full functionality by __ date). After each section is finished, the group will collectively look over the section and look for possible improvements in effeciency and readability. After the entire project is finished, we will review the high-level structure of the program and look for redundencies and possible simplifications.
 
 
 ## How will will communicate difficulties with a task assigned to us
