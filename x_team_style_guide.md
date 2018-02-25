@@ -36,8 +36,7 @@ In-line comments should be used to describe high-level algorithm choices and ste
 * methods
 * coding style (brackets, horizontal, and vertical spacing) for:
   * if statements
-  * local variables
-    - muchWinning
+    - Include a space on either side of a comparison operator (=, <, ect.)
   		- Include a space on either side of a comparison operator (=, <, ect.)
   		- When there is only one line of content, it should be put on the same line as the condition. i.e.
 			if(youAre != trash) singleNodeTree.height = 1;
