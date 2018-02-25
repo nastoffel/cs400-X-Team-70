@@ -13,8 +13,9 @@ and missed deadlines.
   1. Split the work into divisible equal parts
   1. Distribute by who says what they want first
   1. Then give based on equality of workload and members' strengths and weaknesses
-  1. If two people want the same assignment, discuss and come to an agreement. Consult the whole group.
-  1. Worst case, rock paper scissors
+  1. If two people want the same assignment, discuss and come to an agreement. Consult the whole group. Worst case, rock paper scissors
+  1. While each member begins to complete their tasks, they can ask to reevaluate distribution if they feel the group would be better served if another member completed the task. This could happen if they are struggling with their task, or if the group realizes that two tasks rely on the other one's code too closely and should be programmed by the same person. The group will discuss.
+  1. Each member is responsible for commenting their own code.
 
 
 ## How will we will track progress (and follow-up) on completion of tasks
