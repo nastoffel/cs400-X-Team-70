@@ -1,10 +1,10 @@
 # X-Team 70 Style Guide
 
-Our team plans to be very considerate of consistant style. We heavily value the importance of common standards, because it functions as an integral component of communication, readability, and efficient cooperation. During scheduled group check-ins, we will overview each member's code and discusses how conventions can be maintained.
+Our team plans to be very considerate of consistant style. We heavily value the importance of common standards, as they functions as an integral component of communication, readability, and efficient cooperation. During scheduled group check-ins, we will review each member's code and discusses how conventions can be maintained.
 
 ## Naming conventions
 
-When deciding names, team members should try to name things as specifically as possible to increase smooth readability. Abbreviations, especially one-letter names or acronyms, should be avoided.
+When deciding names, team members should try to name things as specifically as possible to increase smooth readability. Abbreviations, especially one-letter names or acronyms, should be avoided. That said, efficiency in naming is important as to avoid bogging down the code's readability with long names. The folowing example shows good naming convention fo
 
 ### Examples
 * interfaces
@@ -23,6 +23,13 @@ When deciding names, team members should try to name things as specifically as p
     - muchWinning
 * constants
     - REAL_GOOD_MULTIPLIER
+* some items in a BST
+    * nodes to the left and right of the root
+         - rootSuccessor
+	 - rootPredecessor
+    * related ...
+         - parentOfSuccessor
+	 - leftChildOfRoot
 
 ## Commenting style for public and private members of a class or interface:
 
