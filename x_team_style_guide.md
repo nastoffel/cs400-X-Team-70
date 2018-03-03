@@ -24,10 +24,10 @@ When deciding names, team members should try to name things as specifically as p
 * constants
     - REAL_GOOD_MULTIPLIER
 * some items in a BST
-    * nodes to the left and right of the root
-         - rootSuccessor - rootPredecessor
-    * related ...
-         - parentOfSuccessor - leftChildOfRoot
+    * rootSuccessor
+    * rootPredecessor
+    * parentOfSuccessor 
+    * leftChildOfRoot
 
 ## Commenting style for public and private members of a class or interface:
 
