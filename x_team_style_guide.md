@@ -35,7 +35,7 @@ In-line comments should be used to describe high-level algorithm choices and ste
 
 ### Examples
 
-  *Classes* \newline
+  *Classes*  return
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
 
 ```
