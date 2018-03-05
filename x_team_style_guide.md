@@ -56,7 +56,7 @@ public class GordonAvenueMarket<T> {
 ```
 *Fields*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Note: In general, commenting in line comments should maintain their column position between lines
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Note: In general, in-line comments should maintain their column position between lines
 ```javascript
 private Student[] students[10]; // This array of Student items will 
 				// keep track of the students that are
@@ -92,7 +92,8 @@ public void setRevenue(double revenue) {
  * Removes student from GordonAvenueMarket
  
  * @param student - Name name of student
- * @return true if student is found in the market and removed, false otherwise
+ * @return true if student is found in the market and removed; 
+ * false if student was not found
  */
 public boolean removeStudent(String studentName) {
 	return this.remove(studentName);
