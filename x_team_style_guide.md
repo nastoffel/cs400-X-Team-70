@@ -35,8 +35,8 @@ In-line comments should be used to describe high-level algorithm choices and ste
 
 ### Examples
 
-  * Classes
-    * Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
+  *Classes*
+      * Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
 
 ```
 /**
@@ -52,7 +52,7 @@ public class GordonAvenueMarket<T> {
 	(contents of class)
 }
 ```
-* Fields
+*Fields*
 ```
 private Student[] students[10]; // This array of Student items will 
 				// keep track of the students that are
@@ -61,22 +61,21 @@ private Student[] students[10]; // This array of Student items will
 private double revenue; // keeps track of how much revenue is produced 
 		       // from food sales
 ```
-* constructors
+*Constructors*
 ```
 public GordonAvenueMarket(Student[] students, double revenue) {
 	this.students = students;
 	this.revenue = revenue;
 }
 ```
-* **methods**
-
-Accessors: Name of accessor method for field **X** should be **getX**
+*Methods*
+    * Accessors: Name of accessor method for field **X** should be **getX**
 ```javascript
 public double getRevenue() {
 	return this.revenue;
 }
 ```
-  Mutators: Name of mutator method for field **Y** should be **setY**
+    * Mutators: Name of mutator method for field **Y** should be **setY**
 ```javascript
 public void setRevenue(double revenue) {
 	this.revenue = revenue;
