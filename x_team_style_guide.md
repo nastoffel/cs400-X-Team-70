@@ -50,7 +50,16 @@ public class GordonAvenueMarket<T> {
 	(contents of class)
 }
 ```
+	* Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
 * fields
+```
+private Student[] students[10]; // This array of Student items will 
+				// keep track of the students that are
+				// currently in the market.
+
+pricate double revnue; // keeps track of how much revnue is produced 
+		       // from food sales
+```
 * constructors
 * methods
 * coding style (brackets, horizontal, and vertical spacing) for:
