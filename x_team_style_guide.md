@@ -36,7 +36,7 @@ In-line comments should be used to describe high-level algorithm choices and ste
 ### Examples
 
 * classes
-'''
+```
 /**
  * This class tracks activity in Gordons, including student inflow
  * and outflow, available seating, occupation of event rooms, and
@@ -49,7 +49,7 @@ In-line comments should be used to describe high-level algorithm choices and ste
 public class GordonAvenueMarket<T> {
 	(contents of class)
 }
-'''
+```
 * fields
 * constructors
 * methods
