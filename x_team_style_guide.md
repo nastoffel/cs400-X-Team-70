@@ -7,23 +7,23 @@ Our team plans to be very considerate of consistant style. We heavily value the 
 When deciding names, team members should try to name things as specifically as possible to increase smooth readability. Abbreviations, especially one-letter names or acronyms, should be avoided. That said, efficiency in naming is important as to avoid bogging down the code's readability with long names. The folowing example shows good naming convention fo
 
 ### Examples
-* interfaces
+* Interfaces
     - NewInterface
-* classes
+* Classes
     - DescriptiveClass
-* exception types
+* Exception types
     - FancyNewException
-* fields
+* Fields
     - niceCamel
-* methods
+* Methods
     - toCamelCase
-* parameters
+* Parameters
     - superNiceParam
-* local variables
+* Local variables
     - muchWinning
-* constants
+* Constants
     - REAL_GOOD_MULTIPLIER
-* some items in a BST
+* Some items in a BST
     * rootSuccessor
     * rootPredecessor
     * parentOfSuccessor 
@@ -35,7 +35,9 @@ In-line comments should be used to describe high-level algorithm choices and ste
 
 ### Examples
 
-* classes
+* Classes
+	* Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
+
 ```
 /**
  * This class tracks activity in Gordons, including student inflow
@@ -50,8 +52,7 @@ public class GordonAvenueMarket<T> {
 	(contents of class)
 }
 ```
-	* Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
-* fields
+* Fields
 ```
 private Student[] students[10]; // This array of Student items will 
 				// keep track of the students that are
