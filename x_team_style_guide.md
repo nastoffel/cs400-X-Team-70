@@ -70,7 +70,7 @@ public GordonAvenueMarket(Student[] students, double revenue) {
 ```
 * methods
 
-  Accessors: Name of accessor method for field **X** should be **getX**
+Accessors: Name of accessor method for field **X** should be **getX**
 ```
 public double getRevenue() {
 	return this.revenue;
