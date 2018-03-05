@@ -68,21 +68,21 @@ public GordonAvenueMarket(Student[] students, double revenue) {
 	this.revenue = revenue;
 }
 ```
-* **methods:**
+* methods
 
-* Accessors: Name of accessor method for field **X** should be **getX**
+  Accessors: Name of accessor method for field **X** should be **getX**
 ```
 public double getRevenue() {
 	return this.revenue;
 }
 ```
-  * Mutators: Name of mutator method for field **Y** should be **setY**
+  Mutators: Name of mutator method for field **Y** should be **setY**
 ```
 public void setRevenue(double revenue) {
 	this.revenue = revenue;
 }
 ```
-  * Public methods
+  Public methods
 ```
 /** 
  * Removes student from GordonAvenueMarket
@@ -93,7 +93,7 @@ public boolean removeStudent(String studentName) {
 	return this.remove(studentName);
 }
 ```
-  * Private helper methods
+  Private helper methods
 ```
 //removes Student with name studentName from this.students
 private boolean remove(String studentName) {
@@ -151,6 +151,7 @@ default:
 }
 ```
 * while loops
+  
 ```
 while (isTilted) {
 	runItDownMid();
