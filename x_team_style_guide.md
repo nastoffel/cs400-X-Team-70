@@ -58,11 +58,55 @@ private Student[] students[10]; // This array of Student items will
 				// keep track of the students that are
 				// currently in the market.
 
-pricate double revnue; // keeps track of how much revnue is produced 
+private double revenue; // keeps track of how much revenue is produced 
 		       // from food sales
 ```
 * constructors
+```
+public GordonAvenueMarket(Student[] students, double revenue) {
+	this.students = students;
+	this.revenue = revenue;
+}
+```
 * methods
+  * Accessors
+    - Name of accessor method for field **X** should be **getX()**
+```
+public double getRevenue() {
+	return this.revenue;
+}
+```
+  * Mutators
+    - Name of mutator method for field **Y** should be **setY**
+```
+public void setRevenue(double revenue) {
+	this.revenue = revenue;
+}
+```
+  * Public methods
+```
+/** 
+ * Removes student from GordonAvenueMarket
+ * @param studentName name of student
+ * @return true if student is found in the market and removed, false otherwise
+ */
+public boolean removeStudent(String studentName) {
+	return this.remove(studentName);
+}
+```
+  * Private helper methods
+```
+//removes Student with name studentName from this.students
+private boolean remove(String studentName) {
+	for (Student s : this.students) {
+		if (studentName.equals(s.getName())) {
+			s = null;
+			return true;
+		}
+	}
+	return false;
+}
+```
 * coding style (brackets, horizontal, and vertical spacing) for:
   * if statements
     - Include a space on either side of a comparison operator (=, <, ect.)
@@ -86,6 +130,56 @@ if(event.equals(mifflin)) {
 }
 ```
   * switch statement
+    - Cases should be at same level of indentation as the switch statement
+    - Every case should either have a break statement or a `/* falls through */` comment
+    - The `break` in the default case is redundant, but good to have just in "case"
+```
+switch(i) {
+case 0:
+	doThis();
+	/* falls through */
+case 1:
+	doThat();
+	break;
+case 2:
+	doThis();
+	doThat();
+	break;
+default:
+	justDoIt();
+	break;
+}
+```
   * while loops
+    - Empty while statement
+```
+while (isTrue);
+```
+    - While loop
+```
+while (isTilted) {
+	runItDownMid();
+}
+```
   * for loops
+    - Empty for statement
+```
+for (int i = 0; i < max; i++);
+```
+    - For loop
+```
+for (int i = 0; i < max; i++) {
+	doTheThing();
+}
+```
   * enhanced for loops
+    - Empty enhanced for statement
+```
+for (Object o : objects);
+```
+    - Enhanced for loop
+```
+for (MenuItem item : McDonaldsMenu) {
+	order(item);
+}
+```
