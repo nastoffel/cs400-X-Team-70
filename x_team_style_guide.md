@@ -108,7 +108,7 @@ private boolean remove(String studentName) {
 ```
 * **coding style (brackets, horizontal, and vertical spacing) for:**
 
-if statements
+* if statements
   - Include a space on either side of a comparison operator (=, <, ect.)
   - When there is only one line of content, it should be put on the same line as the condition. i.e.
 ```
@@ -129,7 +129,7 @@ if(event.equals(mifflin)) {
 	beHealthy();
 }
 ```
-switch statement
+*switch statement*
   * Cases should be at same level of indentation as the switch statement
   * Every case should either have a break statement or a `/* falls through */` comment
   * The `break` in the default case is redundant, but good to have just in "case"
@@ -150,13 +150,13 @@ default:
 	break;
 }
 ```
-while loops
+*while loops*
 
-  *If there is only a single statement in the while loop, it should be put on the same line as the condition*
+  If there is only a single statement in the while loop, it should be put on the same line as the condition
 ```javascript
 while (isTilted) runItDownMid();
 ```
-  *Otherwise, place statements in brackets*
+  Otherwise, place statements in brackets
 ```
 while (!outOfDonuts) {
 	dipDonutInCoffee();
@@ -164,28 +164,28 @@ while (!outOfDonuts) {
 	sipCoffee();
 }
 ```	
-for loops
+*for loops*
   * Same styling as while loops
   
-  *Single statement*
+  Single statement
 ```javascript
 for (int i = 0; i < max; i++) doTheThing();
 ```
-  *Multiple statements*
+  Multiple statements
 ```javascript
 for (int i = max; i > 0; i--) {
 	eatGreenEggs();
 	eatGreenHam();
 }
 ```
-enhanced for loops
+*enhanced for loops*
   * Same styling as while loops
   
-  *Single statement*
+  Single statement
 ```javascript
 for (MenuItem item : McDonaldsMenu) order(item);
 ```
-  *Multiple statements*
+  Multiple statements
 ```javascript
 for (Month m : year) {
 	payRent();
