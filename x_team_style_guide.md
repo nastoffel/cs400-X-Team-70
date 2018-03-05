@@ -31,16 +31,16 @@ When deciding names, team members should try to name things as specifically as p
 
 ## Commenting style for public and private members of a class or interface:
 
-In-line comments should be used to describe high-level algorithm choices and steps. Public methods, classes, and interfaces should include completed javadocs, which contain descriptions of parameters and return variables. Private methods should have header comments. Fields (member variables) should have inl-line comments. 
+In-line comments should be used to describe high-level algorithm choices and steps. Public methods, classes, and interfaces should include completed javadocs, which contain descriptions of parameters and return variables. Private methods should have header comments. Fields (member variables) should have in-line comments. 
 
 ### Examples
 
   *Classes*  
   
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
   
 
-```
+```javascript
 /**
  * This class tracks activity in Gordons, including student inflow
  * and outflow, available seating, occupation of event rooms, and
@@ -55,7 +55,7 @@ public class GordonAvenueMarket<T> {
 }
 ```
 *Fields*
-```
+```javascript
 private Student[] students[10]; // This array of Student items will 
 				// keep track of the students that are
 				// currently in the market.
@@ -64,37 +64,38 @@ private double revenue; // keeps track of how much revenue is produced
 		       // from food sales
 ```
 *Constructors*
-```
+```javascript
 public GordonAvenueMarket(Student[] students, double revenue) {
 	this.students = students;
 	this.revenue = revenue;
 }
 ```
 *Methods*
-    * Accessors: Name of accessor method for field **X** should be **getX**
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Accessors: Name of accessor method for field **X** should be **getX**
 ```javascript
 public double getRevenue() {
 	return this.revenue;
 }
 ```
-    * Mutators: Name of mutator method for field **Y** should be **setY**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Mutators: Name of mutator method for field **Y** should be **setY**
 ```javascript
 public void setRevenue(double revenue) {
 	this.revenue = revenue;
 }
 ```
-  Public methods
+*Public methods*
 ```javascript
 /** 
  * Removes student from GordonAvenueMarket
- * @param studentName name of student
+ * @param student - Name name of student
  * @return true if student is found in the market and removed, false otherwise
  */
 public boolean removeStudent(String studentName) {
 	return this.remove(studentName);
 }
 ```
-  Private helper methods
+*Private helper methods*
 ```javascript
 //removes Student with name studentName from this.students
 private boolean remove(String studentName) {
@@ -107,7 +108,7 @@ private boolean remove(String studentName) {
 	return false;
 }
 ```
-* **coding style (brackets, horizontal, and vertical spacing) for:**
+## Coding style (brackets, horizontal, and vertical spacing):
 
 * if statements
   - Include a space on either side of a comparison operator (=, <, ect.)
