@@ -35,8 +35,8 @@ In-line comments should be used to describe high-level algorithm choices and ste
 
 ### Examples
 
-* Classes
-	* Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
+  * Classes
+    * Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
 
 ```
 /**
@@ -68,16 +68,15 @@ public GordonAvenueMarket(Student[] students, double revenue) {
 	this.revenue = revenue;
 }
 ```
-* methods
-  * Accessors
-    - Name of accessor method for field **X** should be **getX()**
+* **methods:**
+
+* Accessors: Name of accessor method for field **X** should be **getX()**
 ```
 public double getRevenue() {
 	return this.revenue;
 }
 ```
-  * Mutators
-    - Name of mutator method for field **Y** should be **setY**
+  * Mutators: Name of mutator method for field **Y** should be **setY**
 ```
 public void setRevenue(double revenue) {
 	this.revenue = revenue;
@@ -107,8 +106,9 @@ private boolean remove(String studentName) {
 	return false;
 }
 ```
-* coding style (brackets, horizontal, and vertical spacing) for:
-  * if statements
+* **coding style (brackets, horizontal, and vertical spacing) for:**
+
+* if statements
     - Include a space on either side of a comparison operator (=, <, ect.)
     - When there is only one line of content, it should be put on the same line as the condition. i.e.
 ```
@@ -129,10 +129,10 @@ if(event.equals(mifflin)) {
 	beHealthy();
 }
 ```
-  * switch statement
-    - Cases should be at same level of indentation as the switch statement
-    - Every case should either have a break statement or a `/* falls through */` comment
-    - The `break` in the default case is redundant, but good to have just in "case"
+* switch statement
+  * Cases should be at same level of indentation as the switch statement
+  * Every case should either have a break statement or a `/* falls through */` comment
+  * The `break` in the default case is redundant, but good to have just in "case"
 ```
 switch(i) {
 case 0:
@@ -150,34 +150,19 @@ default:
 	break;
 }
 ```
-  * while loops
-    - Empty while statement
-```
-while (isTrue);
-```
-    - While loop
+* while loops
 ```
 while (isTilted) {
 	runItDownMid();
 }
 ```
-  * for loops
-    - Empty for statement
-```
-for (int i = 0; i < max; i++);
-```
-    - For loop
+* for loops
 ```
 for (int i = 0; i < max; i++) {
 	doTheThing();
 }
 ```
-  * enhanced for loops
-    - Empty enhanced for statement
-```
-for (Object o : objects);
-```
-    - Enhanced for loop
+* enhanced for loops
 ```
 for (MenuItem item : McDonaldsMenu) {
 	order(item);
