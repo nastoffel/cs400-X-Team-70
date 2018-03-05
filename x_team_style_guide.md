@@ -36,6 +36,20 @@ In-line comments should be used to describe high-level algorithm choices and ste
 ### Examples
 
 * classes
+'''
+/**
+ * This class tracks activity in Gordons, including student inflow
+ * and outflow, available seating, occupation of event rooms, and
+ * usage of the available food stations on a per customer basis. It
+ * It also tracks income from food sales.
+ *
+ * @author CS400-X-Team-70
+ * @param T
+ */
+public class GordonAvenueMarket<T> {
+	(contents of class)
+}
+'''
 * fields
 * constructors
 * methods
@@ -46,7 +60,7 @@ In-line comments should be used to describe high-level algorithm choices and ste
 ```
 if(youAre != trash) singleNodeTree.height = 1;
 ```
-    - When there is an else statement, do not use in-line code. Put the word else on the line of the closing bracket. i.e.
+  When there is an else statement, do not use in-line code. Put the word else on the line of the closing bracket. i.e.
 ```
 if(temperature < coldnessThreshold(wisconsin)) {
 	putOnCoat();
