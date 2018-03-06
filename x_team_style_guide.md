@@ -194,7 +194,6 @@ for (int i = max; i > 0; i--) {
 }
 ```
 *Enhanced for loops*
-  
 * Same styling as while loops
 * Example of a single statement enhanced for loop
 ```javascript
