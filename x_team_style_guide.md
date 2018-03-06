@@ -164,7 +164,7 @@ default:
 	break;
 }
 ```
-*while loops*
+*While loops*
 
 * If there is only a single statement in the while loop, it should be put on the same line as the condition
 * A blank line should be inserted before and after while loops
