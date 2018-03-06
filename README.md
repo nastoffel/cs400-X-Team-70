@@ -9,7 +9,7 @@
        * GitHub username 4:svsquires
        * GitHub username 5:joshstoecker
    * When did you complete this exercise? 
-      * 2/25/18
+      * 3/5/18
    * How long did it take your team to complete this exercise? 
       * Approximately 90 minutes
 
