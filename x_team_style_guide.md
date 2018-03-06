@@ -195,8 +195,8 @@ for (int i = max; i > 0; i--) {
 ```
 *Enhanced for loops*
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Same styling as while loops
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Example of a single statement enhanced for loop
+* Same styling as while loops
+* Example of a single statement enhanced for loop
 ```javascript
 for (MenuItem item : McDonaldsMenu) order(item);
 ```
