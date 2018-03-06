@@ -119,32 +119,34 @@ private boolean remove(String studentName) {
 }
 ```
 ## Coding style (brackets, horizontal, and vertical spacing):
+*Conditionals*
 
-* if statements
-  - Include a space on either side of a comparison operator (=, <, ect.)
-  - When there is only one line of content, it should be put on the same line as the condition. i.e.
-```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- A blank line should be inserted before and after conditionals
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Include a space on either side of a comparison operator (=, <, ect.)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- When there is only one line of content, it should be put on the same line as the condition. i.e.
+```javascript
 if(youAre != trash) singleNodeTree.height = 1;
 ```
-  When there is an else statement, do not use in-line code. Put the word else on the line of the closing bracket. i.e.
-```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Do not use in-line code for else statements. Put the word else on the line of the closing bracket. i.e.
+```javascript
 if(temperature < coldnessThreshold(wisconsin)) {
 	putOnCoat();
 } else {
 	beHappy();
 }
 ```
-    - When content is multiple lines, place opening bracket on the same line as the condition. i.e.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- When content is multiple lines, place opening bracket on the same line as the condition. i.e.
 ```
 if(event.equals(mifflin)) {
 	dontGoToThat(event);
 	beHealthy();
 }
 ```
-*switch statement*
-  * Cases should be at same level of indentation as the switch statement
-  * Every case should either have a break statement or a `/* falls through */` comment
-  * The `break` in the default case is redundant, but good to have just in "case"
+*Switch statement*
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Cases should be at same level of indentation as the switch statement
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Every case should either have a break statement or a `/* falls through */` comment
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The `break` in the default case is redundant, but good to have just in "case"
 ```javascript
 switch(i) {
 case 0:
@@ -164,40 +166,41 @@ default:
 ```
 *while loops*
 
-  If there is only a single statement in the while loop, it should be put on the same line as the condition
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- If there is only a single statement in the while loop, it should be put on the same line as the condition
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- A blank line should be inserted before and after while loops
 ```javascript
 while (isTilted) runItDownMid();
 ```
-  Otherwise, place statements in brackets
-```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Otherwise, place statements in brackets
+```javascript
 while (!outOfDonuts) {
 	dipDonutInCoffee();
 	eatDonut();
 	sipCoffee();
 }
 ```	
-*for loops*
-  * Same styling as while loops
-  
-  Single statement
+*For loops*
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Same styling as while loops
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Example of a single statement for loop
 ```javascript
 for (int i = 0; i < max; i++) doTheThing();
 ```
-  Multiple statements
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Example of a multi-statement for loop
 ```javascript
 for (int i = max; i > 0; i--) {
 	eatGreenEggs();
 	eatGreenHam();
 }
 ```
-*enhanced for loops*
-  * Same styling as while loops
+*Enhanced for loops*
   
-  Single statement
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Same styling as while loops
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Example of a single statement enhanced for loop
 ```javascript
 for (MenuItem item : McDonaldsMenu) order(item);
 ```
-  Multiple statements
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Example of a multi-statement while enhanced for loop
 ```javascript
 for (Month m : year) {
 	payRent();
