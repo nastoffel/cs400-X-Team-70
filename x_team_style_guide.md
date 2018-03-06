@@ -37,7 +37,7 @@ In-line comments should be used to describe high-level algorithm choices and ste
 
   *Classes*  
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
+* Note: Javadoc comments should be written in complete sentences, while other types of commenting may be written in fragments
   
 
 ```javascript
@@ -56,7 +56,7 @@ public class GordonAvenueMarket<T> {
 ```
 *Fields*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Note: In general, in-line comments should maintain their column position between lines
+* Note: In general, in-line comments should maintain their column position between lines
 ```javascript
 private Student[] students[10]; // This array of Student items will 
 				// keep track of the students that are
@@ -74,13 +74,13 @@ public GordonAvenueMarket(Student[] students, double revenue) {
 ```
 *Methods*
     
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Accessors: Name of accessor method for field **X** should be **getX**
+* Accessors: Name of accessor method for field **X** should be **getX**
 ```javascript
 public double getRevenue() {
 	return this.revenue;
 }
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Mutators: Name of mutator method for field **Y** should be **setY**
+* Mutators: Name of mutator method for field **Y** should be **setY**
 ```javascript
 public void setRevenue(double revenue) {
 	this.revenue = revenue;
@@ -121,13 +121,13 @@ private boolean remove(String studentName) {
 ## Coding style (brackets, horizontal, and vertical spacing):
 *Conditionals*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- A blank line should be inserted before and after conditionals
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Include a space on either side of a comparison operator (=, <, ect.)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- When there is only one line of content, it should be put on the same line as the condition. i.e.
+* A blank line should be inserted before and after conditionals
+* Include a space on either side of a comparison operator (=, <, ect.)
+* When there is only one line of content, it should be put on the same line as the condition. i.e.
 ```javascript
 if(youAre != trash) singleNodeTree.height = 1;
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Do not use in-line code for else statements. Put the word else on the line of the closing bracket. i.e.
+* Do not use in-line code for else statements. Put the word else on the line of the closing bracket. i.e.
 ```javascript
 if(temperature < coldnessThreshold(wisconsin)) {
 	putOnCoat();
@@ -135,7 +135,7 @@ if(temperature < coldnessThreshold(wisconsin)) {
 	beHappy();
 }
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- When content is multiple lines, place opening bracket on the same line as the condition. i.e.
+* When content is multiple lines, place opening bracket on the same line as the condition. i.e.
 ```
 if(event.equals(mifflin)) {
 	dontGoToThat(event);
@@ -144,9 +144,9 @@ if(event.equals(mifflin)) {
 ```
 *Switch statement*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Cases should be at same level of indentation as the switch statement
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Every case should either have a break statement or a `/* falls through */` comment
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The `break` in the default case is redundant, but good to have just in "case"
+* Cases should be at same level of indentation as the switch statement
+* Every case should either have a break statement or a `/* falls through */` comment
+* The `break` in the default case is redundant, but good to have just in "case"
 ```javascript
 switch(i) {
 case 0:
@@ -166,12 +166,12 @@ default:
 ```
 *while loops*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- If there is only a single statement in the while loop, it should be put on the same line as the condition
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- A blank line should be inserted before and after while loops
+* If there is only a single statement in the while loop, it should be put on the same line as the condition
+* A blank line should be inserted before and after while loops
 ```javascript
 while (isTilted) runItDownMid();
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Otherwise, place statements in brackets
+* Otherwise, place statements in brackets
 ```javascript
 while (!outOfDonuts) {
 	dipDonutInCoffee();
@@ -186,7 +186,7 @@ while (!outOfDonuts) {
 ```javascript
 for (int i = 0; i < max; i++) doTheThing();
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Example of a multi-statement for loop
+* Example of a multi-statement for loop
 ```javascript
 for (int i = max; i > 0; i--) {
 	eatGreenEggs();
@@ -199,7 +199,7 @@ for (int i = max; i > 0; i--) {
 ```javascript
 for (MenuItem item : McDonaldsMenu) order(item);
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Example of a multi-statement while enhanced for loop
+* Example of a multi-statement while enhanced for loop
 ```javascript
 for (Month m : year) {
 	payRent();
