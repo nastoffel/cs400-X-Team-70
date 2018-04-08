@@ -55,12 +55,12 @@ public class Graph<E> implements GraphADT<E> {
     public boolean addEdge(E vertex1, E vertex2) {
         boolean added = false;
         if (graph.contains(vertex1) && graph.contains(vertex2)) {
-            for (GraphNode e : graph) {
+            for (GraphNode<E> e : graph) {
                 if (e.equals(vertex1)) {
-                    e.adjacencyList.add(vertex2);
+                    e.addEdge(new GraphNode<E>(vertex2));
                 }
                 if (e.equals(vertex2)) {
-                    e.adjacencyList.add(vertex1);
+                    e.addEdge(new GraphNode<E>(vertex1));
                 }
             }
             added = true;
