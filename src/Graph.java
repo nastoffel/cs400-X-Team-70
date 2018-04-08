@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class Graph<E> implements GraphADT<E> {
 
-    private ArrayList<E> graph;
+    private Set<GraphNode> graph;
 
     /**
      * Instance variables and constructors
@@ -26,16 +26,11 @@ public class Graph<E> implements GraphADT<E> {
     @Override
     public E addVertex(E vertex) {
         try {
-            for (E e : getAllVertices()) {
-                if (e.equals(vertex)) {
-                    throw new DuplicateKeyException();
-                }
-            }
-            graph.add(vertex);
+            graph.add(new GraphNode(vertex));
             return vertex;
         } catch (NullPointerException e) {
             return null;
-        } catch (DuplicateKeyException e) {
+        } catch (IllegalArgumentException e) {
             return null;
         }
     }
@@ -46,14 +41,7 @@ public class Graph<E> implements GraphADT<E> {
     @Override
     public E removeVertex(E vertex) {
         boolean remove = false;
-        int index = 0;
-        for (E e : getAllVertices()) {
-            if (e.equals(vertex)) {
-                graph.remove(index);
-                remove = true;
-            }
-            index++;
-        }
+        remove = graph.remove(vertex);
         if (remove) {
             return vertex;
         }
@@ -65,7 +53,19 @@ public class Graph<E> implements GraphADT<E> {
      */
     @Override
     public boolean addEdge(E vertex1, E vertex2) {
-
+        boolean added = false;
+        if (graph.contains(vertex1) && graph.contains(vertex2)) {
+            for (GraphNode e : graph) {
+                if (e.equals(vertex1)) {
+                    e.adjacencyList.add(vertex2);
+                }
+                if (e.equals(vertex2)) {
+                    e.adjacencyList.add(vertex1);
+                }
+            }
+            added = true;
+        }
+        return added;
     }
 
     /**
@@ -97,8 +97,7 @@ public class Graph<E> implements GraphADT<E> {
      */
     @Override
     public Iterable<E> getAllVertices() {
-        ArrayList<E> iterable = new ArrayList<>();
-        return iterable;
+        return graph;
     }
 
 
