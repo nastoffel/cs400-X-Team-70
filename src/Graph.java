@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -72,4 +73,37 @@ public class Graph<E> implements GraphADT<E> {
         
     }
 
+}
+
+class GraphNode<T> {
+	T vertex;
+	ArrayList<GraphNode> adjacencyList;
+	public GraphNode() {
+		vertex = null;
+		adjacencyList = new ArrayList<GraphNode>();
+	}
+	public GraphNode(T vertex) {
+		this.vertex = vertex;
+		adjacencyList = new ArrayList<GraphNode>();
+	}
+	
+	public GraphNode addEdge(GraphNode vertex) {
+		if(adjacencyList.contains(vertex))
+			return null;
+		adjacencyList.add(vertex);
+		return vertex;
+	}
+	
+	public GraphNode removeEdge(GraphNode vertex) {
+		if(adjacencyList.contains(vertex)) {
+			adjacencyList.remove(vertex);
+			return vertex;
+		}
+		else
+			return null;
+	}
+	
+	public ArrayList getEdges() {
+		return adjacencyList;
+	}
 }
