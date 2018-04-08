@@ -13,151 +13,172 @@ import java.util.Set;
  */
 public class Graph<E> implements GraphADT<E> {
     
-	 private Set<GraphNode> graph;
+	private ArrayList<GraphNode<E>> graph;
 
-	    /**
-	     * Instance variables and constructors
-	     */
+	/**
+	 * Instance variables and constructors
+	 */
+	public Graph(){
+		graph = new ArrayList<GraphNode<E>>();
+	}
 
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public E addVertex(E vertex) {
-	        try {
-	            graph.add(new GraphNode(vertex));
-	            return vertex;
-	        } catch (NullPointerException e) {
-	            return null;
-	        } catch (IllegalArgumentException e) {
-	            return null;
-	        }
-	    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public E addVertex(E vertex) {
+		if(vertex == null)
+			return null;
+		if(hasVertex(vertex))
+			return null;
+		graph.add(new GraphNode<E>(vertex));
+		return vertex;
+	}
 
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public E removeVertex(E vertex) {
-	        boolean remove = false;
-	        remove = graph.remove(vertex);
-	        if (remove) {
-	            return vertex;
-	        }
-	        return null;
-	    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public E removeVertex(E vertex) {
+		if(vertex == null)
+			return null;
+		GraphNode<E> node = new GraphNode<E>();
+		for(GraphNode<E> e: graph)
+			if(e.getVertex().equals(vertex)) {
+				node = e;
+			}
+		if(node != null) {
+			for(E neighbor: getNeighbors(node.getVertex()))
+				removeEdge(node.getVertex(), neighbor);
+				return vertex;
+		}
+		return null;
+	}
 
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public boolean addEdge(E vertex1, E vertex2) {
-	        try {
-	            boolean added = false;
-	            if (graph.contains(vertex1) && graph.contains(vertex2)) {
-	                for (GraphNode<E> e : graph) {
-	                    if (e.equals(vertex1)) {
-	                        e.addEdge(new GraphNode<E>(vertex2));
-	                    }
-	                    if (e.equals(vertex2)) {
-	                        e.addEdge(new GraphNode<E>(vertex1));
-	                    }
-	                }
-	                added = true;
-	            }
-	            return added;
-	        } catch (NullPointerException e) {
-	            return false;
-	        }
-	    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean addEdge(E vertex1, E vertex2) {
+		try {
+			boolean added = false;
+			if (graph.contains(vertex1) && graph.contains(vertex2)) {
+				for (GraphNode<E> e : graph) {
+					if (e.equals(vertex1)) {
+						e.addEdge(vertex2);
+					}
+					if (e.equals(vertex2)) {
+						e.addEdge(vertex1);
+					}
+				}
+				added = true;
+			}
+			return added;
+		} catch (NullPointerException e) {
+			return false;
+		}
+	}
 
-	    /**
-	     * {@inheritDoc}
-	     */
-	    @Override
-	    public boolean removeEdge(E vertex1, E vertex2) {
-	        try {
-	            boolean added = false;
-	            if (graph.contains(vertex1) && graph.contains(vertex2)) {
-	                for (GraphNode<E> e : graph) {
-	                    if (e.equals(vertex1)) {
-	                        e.removeEdge(new GraphNode<E>(vertex2));
-	                    }
-	                    if (e.equals(vertex2)) {
-	                        e.removeEdge(new GraphNode<E>(vertex1));
-	                    }
-	                }
-	                added = true;
-	            }
-	            return added;
-	        } catch (NullPointerException e) {
-	            return false;
-	        }
-	    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean removeEdge(E vertex1, E vertex2) {
+		boolean added = false;
+		if (hasVertex(vertex1) && hasVertex(vertex2)) {
+			for (GraphNode<E> e : graph) {
+				if (e.equals(vertex1)) {
+					e.removeEdge(vertex2);
+				}
+				if (e.equals(vertex2)) {
+					e.removeEdge(vertex1);
+				}
+			}
+			added = true;
+		}
+		
+		return added;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isAdjacent(E vertex1, E vertex2) {
-    	try {
-    		if(graph.contains(vertex1) && graph.contains(vertex2))
-    			for(GraphNode e: graph)
-    				if(e.equals(vertex1))
-    					if(e.getEdges().contains(vertex2))
-    						return true;
-    		return false;
-    	} catch (NullPointerException e) {
-    		return false;
-    	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isAdjacent(E vertex1, E vertex2) {
+		try {
+			if(hasVertex(vertex1) && hasVertex(vertex2))
+				for(GraphNode<E> e: graph)
+					if(e.getVertex().equals(vertex1))
+						if(e.getEdges().contains(vertex2))
+							return true;
+			return false;
+		} catch (NullPointerException e) {
+			return false;
+		}
 
-    }
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Iterable<E> getNeighbors(E vertex) {
-    	try {
-    	if(graph.contains(vertex))
-    		for(GraphNode e: graph)
-    			if(e.equals(vertex))
-    				return e.getEdges();
-    	return null;
-    	} catch (NullPointerException e){
-    		return null;
-    	}
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Iterable<E> getNeighbors(E vertex) {
+		if(vertex == null)
+			return null;
+		try {
+			if(hasVertex(vertex))
+				for(GraphNode<E> e: graph)
+					if(e.getVertex().equals(vertex))
+						return e.getEdges();
+			return null;
+		} catch (NullPointerException e){
+			return null;
+		}
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Iterable<E> getAllVertices() {
-        return (Iterable<E>) graph;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Iterable<E> getAllVertices() {
+		ArrayList<E> vertices = new ArrayList<E>();
+		for(GraphNode<E> e: graph)
+			vertices.add(e.getVertex());
+		return vertices;
+	}
+	
+	private boolean hasVertex(E vertex) {
+		for(GraphNode<E> e: graph)
+			if(e.getVertex().equals(vertex))
+				return true;
+		return false;
+	}
 }
 
 class GraphNode<T> {
 	private T vertex;
-	private ArrayList<GraphNode> adjacencyList;
+	private ArrayList<T> adjacencyList;
 	public GraphNode() {
 		vertex = null;
-		adjacencyList = new ArrayList<GraphNode>();
+		adjacencyList = new ArrayList<T>();
 	}
 	public GraphNode(T vertex) {
 		this.vertex = vertex;
-		adjacencyList = new ArrayList<GraphNode>();
+		adjacencyList = new ArrayList<T>();
 	}
-	
-	public GraphNode addEdge(GraphNode vertex) {
+
+	public T getVertex() {
+		return vertex;
+	}
+
+	public T addEdge(T vertex) {
 		if(adjacencyList.contains(vertex))
 			return null;
 		adjacencyList.add(vertex);
 		return vertex;
 	}
-	
-	public GraphNode removeEdge(GraphNode vertex) {
+
+	public T removeEdge(T vertex) {
 		if(adjacencyList.contains(vertex)) {
 			adjacencyList.remove(vertex);
 			return vertex;
@@ -165,8 +186,8 @@ class GraphNode<T> {
 		else
 			return null;
 	}
-	
-	public ArrayList getEdges() {
+
+	public ArrayList<T> getEdges() {
 		return adjacencyList;
 	}
 }
