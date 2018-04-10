@@ -82,10 +82,10 @@ public class WordProcessor {
         try {
             wordStream = Files.lines(Paths.get(filepath));
 
-            wordStream = wordStream.map(String::trim).map(String::toUpperCase); // makes all lines
-                                                                                // trimmed and
-                                                                                // uppercase
-            wordStream = wordStream.filter(line -> line == ""); // removed empty lines
+             wordStream = wordStream.map(String::trim)
+                        .filter(x -> x != null && !x.equals(""))
+                        .map(String::toUpperCase); // makes all lines trimmed and uppercase. remove
+                                                   // null or empty lines
         } catch (IOException e) { // file cannot be read
             e.printStackTrace();
             wordStream = Stream.empty();
