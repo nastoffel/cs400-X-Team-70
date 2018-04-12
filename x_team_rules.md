@@ -8,6 +8,8 @@ This document helps individual members understand the team's expectations,
 and will hopefully lead to productive team work with fewer conflicts
 and missed deadlines.
 
+These rules may be ammended if the group feels it would be helpful.
+
 ## How we will assign (and reassign) tasks
   1. The high-level structure of the project will be discussed so that each member understands how the code should function. 
   1. The work will be split into equal parts.
