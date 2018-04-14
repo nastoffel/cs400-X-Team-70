@@ -6,19 +6,20 @@ import java.util.Set;
 /**
  * Undirected and unweighted graph implementation
  * 
- * @param <E> type of a vertex
+ * @param <E>
+ *            type of a vertex
  * 
  * @author sapan (sapan@cs.wisc.edu)
  * 
  */
 public class Graph<E> implements GraphADT<E> {
-    
+
 	private ArrayList<GraphNode<E>> graph;
 
 	/**
 	 * Instance variables and constructors
 	 */
-	public Graph(){
+	public Graph() {
 		graph = new ArrayList<GraphNode<E>>();
 	}
 
@@ -27,10 +28,10 @@ public class Graph<E> implements GraphADT<E> {
 	 */
 	@Override
 	public E addVertex(E vertex) {
-		if(vertex == null)
+		if (vertex == null)
 			return null;
-		for(GraphNode<E> e: graph) {
-			if(e.getVertex().equals(vertex)) {
+		for (GraphNode<E> e : graph) {
+			if (e.getVertex().equals(vertex)) {
 				return null;
 			}
 		}
@@ -43,18 +44,19 @@ public class Graph<E> implements GraphADT<E> {
 	 */
 	@Override
 	public E removeVertex(E vertex) {
-		if(vertex == null)
+		if (vertex == null)
 			return null;
 		GraphNode<E> node = null;
-		for(GraphNode<E> e: graph) {
-			if(e.getVertex().equals(vertex)) {
+		for (GraphNode<E> e : graph) {
+			if (e.getVertex().equals(vertex)) {
 				node = e;
 			}
 		}
-		if(node != null) {
-			for(E neighbor: getNeighbors(node.getVertex()))
+		if (node != null) {
+			for (E neighbor : getNeighbors(node.getVertex()))
 				removeEdge(node.getVertex(), neighbor);
-				return vertex;
+			graph.remove(node);
+			return vertex;
 		}
 		return null;
 	}
@@ -67,26 +69,25 @@ public class Graph<E> implements GraphADT<E> {
 		try {
 			boolean added = false;
 			boolean contained = false;
-			if(vertex1.equals(vertex2)) {
+			if (vertex1.equals(vertex2)) {
 				return false;
 			}
 			for (GraphNode<E> e : graph) {
-				if(e.getVertex().equals(vertex1)) {
+				if (e.getVertex().equals(vertex1)) {
 					contained = true;
-					break;
-				}else
-					contained = false;
+				}
+				if(contained)
 				for (GraphNode<E> n : graph) {
-					if(e.getVertex().equals(vertex2)) {
+					if (n.getVertex().equals(vertex2)) {
 						contained = true;
 						break;
-					}else
+					} else
 						contained = false;
 				}
 			}
-			if(contained) {
+			if (contained) {
 				for (GraphNode<E> e : graph) {
-					
+
 					if (e.getVertex().equals(vertex1)) {
 						e.addEdge(vertex2);
 					}
@@ -108,7 +109,24 @@ public class Graph<E> implements GraphADT<E> {
 	@Override
 	public boolean removeEdge(E vertex1, E vertex2) {
 		boolean added = false;
-		if (hasVertex(vertex1) && hasVertex(vertex2)) {
+		boolean contained = false;
+		if (vertex1.equals(vertex2)) {
+			return false;
+		}
+		for (GraphNode<E> e : graph) {
+			if (e.getVertex().equals(vertex1)) {
+				contained = true;
+			}
+			if(contained)
+			for (GraphNode<E> n : graph) {
+				if (n.getVertex().equals(vertex2)) {
+					contained = true;
+					break;
+				} else
+					contained = false;
+			}
+		}
+		if (contained) {
 			for (GraphNode<E> e : graph) {
 				if (e.equals(vertex1)) {
 					e.removeEdge(vertex2);
@@ -119,7 +137,7 @@ public class Graph<E> implements GraphADT<E> {
 			}
 			added = true;
 		}
-		
+
 		return added;
 	}
 
@@ -129,11 +147,29 @@ public class Graph<E> implements GraphADT<E> {
 	@Override
 	public boolean isAdjacent(E vertex1, E vertex2) {
 		try {
-			if(graph.contains(vertex1) && graph.contains(vertex2))
-				for(GraphNode<E> e: graph)
-					if(e.getVertex().equals(vertex1))
-						if(e.getEdges().contains(vertex2))
+			boolean contained = false;
+			if (vertex1.equals(vertex2)) {
+				return false;
+			}
+			for (GraphNode<E> e : graph) {
+				if (e.getVertex().equals(vertex1)) {
+					contained = true;
+				}
+				if(contained)
+				for (GraphNode<E> n : graph) {
+					if (n.getVertex().equals(vertex2)) {
+						contained = true;
+						break;
+					} else
+						contained = false;
+				}
+			}
+			if (contained) {
+				for (GraphNode<E> e : graph)
+					if (e.getVertex().equals(vertex1))
+						if (e.getEdges().contains(vertex2))
 							return true;
+			}
 			return false;
 		} catch (NullPointerException e) {
 			return false;
@@ -146,14 +182,14 @@ public class Graph<E> implements GraphADT<E> {
 	 */
 	@Override
 	public Iterable<E> getNeighbors(E vertex) {
-		if(vertex == null)
+		if (vertex == null)
 			return null;
 		try {
-				for(GraphNode<E> e: graph)
-					if(e.getVertex().equals(vertex))
-						return e.getEdges();
+			for (GraphNode<E> e : graph)
+				if (e.getVertex().equals(vertex))
+					return e.getEdges();
 			return null;
-		} catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			return null;
 		}
 	}
@@ -164,14 +200,14 @@ public class Graph<E> implements GraphADT<E> {
 	@Override
 	public Iterable<E> getAllVertices() {
 		ArrayList<E> vertices = new ArrayList<E>();
-		for(GraphNode<E> e: graph)
+		for (GraphNode<E> e : graph)
 			vertices.add(e.getVertex());
 		return vertices;
 	}
-	
+
 	private boolean hasVertex(E vertex) {
-		for(GraphNode<E> e: graph)
-			if(e.getVertex().equals(vertex))
+		for (GraphNode<E> e : graph)
+			if (e.getVertex().equals(vertex))
 				return true;
 		return false;
 	}
@@ -180,10 +216,12 @@ public class Graph<E> implements GraphADT<E> {
 class GraphNode<T> {
 	private T vertex;
 	private ArrayList<T> adjacencyList;
+
 	public GraphNode() {
 		vertex = null;
 		adjacencyList = new ArrayList<T>();
 	}
+
 	public GraphNode(T vertex) {
 		this.vertex = vertex;
 		adjacencyList = new ArrayList<T>();
@@ -194,18 +232,17 @@ class GraphNode<T> {
 	}
 
 	public T addEdge(T vertex) {
-		if(adjacencyList.contains(vertex))
+		if (adjacencyList.contains(vertex))
 			return null;
 		adjacencyList.add(vertex);
 		return vertex;
 	}
 
 	public T removeEdge(T vertex) {
-		if(adjacencyList.contains(vertex)) {
+		if (adjacencyList.contains(vertex)) {
 			adjacencyList.remove(vertex);
 			return vertex;
-		}
-		else
+		} else
 			return null;
 	}
 
