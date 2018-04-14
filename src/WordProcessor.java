@@ -143,10 +143,11 @@ public class WordProcessor {
                     aP++;
                     bP++;
                 }
+            } else {
+                aP++;
+                bP++;
             }
-            aP++;
-            bP++;
-
+            
             if (aP == aE && bP == bE) {
                 System.out.println("    true");
                 return true;
