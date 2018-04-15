@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ public class GraphProcessorTest {
 		} catch (IOException e) {
 			System.out.println("Could not get word stream from word_list.txt");
 		}
-		
+		System.out.println(vertices.size());
 	}
 
 	@AfterClass
@@ -41,6 +42,7 @@ public class GraphProcessorTest {
 	@Before
 	public void setUp() throws Exception {
 		this.gp = new GraphProcessor();
+		gp.populateGraph("word_list.txt");
 	}
 
 	@After
@@ -51,6 +53,7 @@ public class GraphProcessorTest {
 	@Test
 	public final void testGetWordStream() {
 		for (String word : vertices) {
+			System.out.println(word);
 			assertEquals("Words were not properly trimmed", true, word.equals(word.trim()));
 			assertEquals("Stream contained an empty string", false, word.equals(""));
 			assertEquals("Words were not all uppercase", true, word.equals(word.toUpperCase()));
