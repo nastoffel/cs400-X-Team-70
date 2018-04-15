@@ -61,6 +61,7 @@ public class Graph<E> implements GraphADT<E> {
 		}
 		// if a node was found then go through and deletes the edges from all of its
 		// neighbors
+		//this code segment has a concurrent modification error
 		if (node != null) {
 			for (E neighbor : getNeighbors(node.getVertex()))
 				removeEdge(node.getVertex(), neighbor);
