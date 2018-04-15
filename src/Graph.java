@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Undirected and unweighted graph implementation
@@ -61,9 +64,9 @@ public class Graph<E> implements GraphADT<E> {
 		}
 		// if a node was found then go through and deletes the edges from all of its
 		// neighbors
-		//this code segment has a concurrent modification error
 		if (node != null) {
-			for (E neighbor : getNeighbors(node.getVertex()))
+			CopyOnWriteArrayList<E> temp = (CopyOnWriteArrayList<E>) getNeighbors(node.getVertex());
+			for (E neighbor : temp)
 				removeEdge(node.getVertex(), neighbor);
 			graph.remove(node);
 			return vertex;
@@ -230,14 +233,14 @@ public class Graph<E> implements GraphADT<E> {
 
 class GraphNode<T> {
 	private T vertex;
-	private ArrayList<T> adjacencyList;
+	private CopyOnWriteArrayList<T> adjacencyList;
 
 	/**
 	 * constructs an empty GraphNode
 	 */
 	public GraphNode() {
 		vertex = null;
-		adjacencyList = new ArrayList<T>();
+		adjacencyList = new CopyOnWriteArrayList<T>();
 	}
 
 	/**
@@ -248,7 +251,7 @@ class GraphNode<T> {
 	 */
 	public GraphNode(T vertex) {
 		this.vertex = vertex;
-		adjacencyList = new ArrayList<T>();
+		adjacencyList = new CopyOnWriteArrayList<T>();
 	}
 
 	public T getVertex() {
@@ -284,7 +287,7 @@ class GraphNode<T> {
 			return null;
 	}
 
-	public ArrayList<T> getEdges() {
+	public CopyOnWriteArrayList<T> getEdges() {
 		return adjacencyList;
 	}
 }
