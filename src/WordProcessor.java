@@ -94,7 +94,7 @@ public class WordProcessor {
      * of 1 char replacement 1 char addition 1 char deletion then word1 and word2 are adjacent else
      * word1 and word2 are not adjacent
      * 
-     * Note: if word1 is equal to word2, they are not adjacent //TODO fix this
+     * Note: if word1 is equal to word2, they are not adjacent 
      * 
      * @param word1 first word
      * @param word2 second word
@@ -106,61 +106,57 @@ public class WordProcessor {
         if (word1.equals(word2))
             return false; // they are the same word so they are not adjacent
 
-        // System.out.println(word1 + ", " + word2);
         int aE = word1.length(); // Ending index of a
         int bE = word2.length();
 
-        /*
-         * if(Math.abs(aE-bE)>1) { System.out.println("    false: length more than 1 off"); return
-         * false; }
-         */
+        if(Math.abs(aE-bE)>1) return false;
+        
 
         int aP = 0; // pointer to character in a
         int bP = 0;
 
         boolean foundDifference = false; // tracks whether a difference has been found
         boolean iterate = true;
+        String filter = "GIMLETS";
+        if (word1.equals(filter)) {
+            System.out.println("                                                    : " + word1 + ", " + word2);
+        }
 
-        while (iterate) {
-            if (word1.charAt(aP) != word2.charAt(bP)) {
-                //System.out.println("  " + word1.charAt(aP) + "!="
-                //                + word2.charAt(bP));
-                if (foundDifference) {
-                    //System.out.println("    false: second error");
+        while (iterate) { // loop is exited with return statements (below) when an ending character is reached
+            if (word1.charAt(aP) != word2.charAt(bP)) { // a difference is detected
+                if (foundDifference) {  // a previous difference had been detcted, meaning this is the second difference.
+                    if (word1.equals(filter)) 
+                        System.out.println("    false: second error: " + word1 + ", " + word2);
                     return false;
                 }
                 foundDifference = true;
+                
 
                 if (word2.length() > bP + 1 && word1.charAt(aP) == word2
-                                .charAt(bP + 1)) {
-                    //System.out.println("      error: addition in b");
-                    bP++; // b has extra
+                                .charAt(bP + 1)) { // addition in b, advance b's charcater pointer
+                    if (word1.equals(filter))  
+                        System.out.println("      error: addition in b: " + word1.charAt(aP) + ", " + word2.charAt(bP)  + ", " + word1 + ", " + word2);
+                    bP++; 
                 } else if (word1.length() > aP + 1 && word1
-                                .charAt(aP + 1) == word2.charAt(bP)) {
-                    //System.out.println("      error: addition in a");
-                    aP++; // a has extra
-                } else if (word2.length() > bP + 1
-                                && word1.length() > aP + 1
-                                && word1.charAt(aP + 1) == word2
-                                                .charAt(bP + 1)) { // substitution
-                    //System.out.println("      error: substitution");
+                                .charAt(aP + 1) == word2.charAt(bP)) { // addition in a, advance a's character pointer
+                    if (word1.equals(filter)) 
+                        System.out.println("      error: addition in a: " + word1.charAt(aP) + ", " + word2.charAt(bP) + ", " + word1 + ", " + word2);
+                    aP++; 
+                } else { // substitution, advance both pointers
                     aP++;
                     bP++;
-                }
-            } else {
+                } 
+            } else { // no difference in the current character, advance both pointers.
                 aP++;
                 bP++;
             }
 
             if (aP == aE && bP == bE) { // 0 or 1 errors detected and every character has been
                                         // checked.
-                System.out.println(word1 + ", " + word2);
-                System.out.println("    true");
                 return true;
             } else if (aP == aE || bP == bE) { // the end of one word has been reached and words are
                                                // different lengths. Return true only if no previous
                                                // errors have been found.
-                //System.out.println("    " + (!foundDifference));
                 return (!foundDifference);
             }
 
