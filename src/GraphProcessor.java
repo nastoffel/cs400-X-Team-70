@@ -156,8 +156,7 @@ public class GraphProcessor {
      * @return List<String> list of the words
      */
     public List<String> getShortestPath(String word1, String word2) {
-        System.out.println("shortestPath()");
-        System.out.println("shortest paths length: " + shortestPaths.size());
+        if(word1.equals(word2)) return new ArrayList<String>();
         if (shortestPaths.containsKey(word1)
                         && shortestPaths.get(word1).containsKey(word2)) {
             return shortestPaths.get(word1).get(word2);
