@@ -1,0 +1,37 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+
+public class Main_Debug {
+
+    public Main_Debug() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    /**
+     * 
+     * Example: Given a dictionary, cat rat hat neat wheat kit distance of the shortest path between
+     * cat and wheat, [cat, hat, heat, wheat] = 3 (the number of edges in the shortest path)
+     * 
+     * @param word1 first word
+     * @param word2 second word
+     * @return Integer distance
+     */
+
+    public static void main(String[] args) {
+        System.out.println("main()");
+        GraphProcessor g = new GraphProcessor();
+        g.populateGraph("word_list.txt");
+        List<String> path = g.getShortestPath("SHINNY", "HACKEE");
+        System.out.println("          shortest path: " );
+        for(String s : path) System.out.print(s + ", ");
+    }
+
+}
