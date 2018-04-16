@@ -86,6 +86,8 @@ public class GraphProcessorTest {
 		}
 	}
 	
+	
+	
 	@Test
 	public final void getShortestPathAdjacentWords() {
 		for (String word1 : vertices) {
@@ -99,6 +101,25 @@ public class GraphProcessorTest {
 							word2, shortestPath.get(0));
 				}
 			}
+		}
+	}
+	
+	@Test
+	public final void getShortestDistanceForModerateLengthPath() {
+		int actualDistance = gp.getShortestDistance("JELLIES", "FLEXING");
+		assertEquals("Calculated path distance is not equal to the expected", 
+				12, actualDistance);
+	}
+
+	@Test
+	public final void getShortestPathForModerateLengthPath() {
+		List<String> actual = gp.getShortestPath("JELLIES", "FLEXING");
+		String[] e = {"JELLIES", "JOLLIES", "COLLIES", "COLLINS", "COLLING", "COALING", "COAMING", "FOAMING", "FLAMING", "FLAKING", "FLUKING", "FLUXING", "FLEXING"};
+		ArrayList<String> expected = new ArrayList<String>();
+		for(String s : e) expected.add(s);
+		for (int i = 0; i < expected.size(); ++i) {
+		    assertEquals("shortest path between \"JELLIES\" and \"FLEXING\""
+			    + " differs at index " + i, expected.get(i), actual.get(i));
 		}
 	}
 	
