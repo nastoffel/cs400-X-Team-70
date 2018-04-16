@@ -148,6 +148,7 @@ public class GraphProcessorTest {
 	    queue.add(start);
 	    while (!queue.isEmpty()) {
 	        current = queue.remove();
+		if (current.equals(finish)) break;
 	        for (String child : graph.getNeighbors(current)) {
 	        	
 	            if (!visited.contains(child)){
