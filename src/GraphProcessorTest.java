@@ -56,7 +56,6 @@ public class GraphProcessorTest {
 	@Test
 	public final void testGetWordStream() {
 		for (String word : vertices) {
-			System.out.println(word);
 			assertEquals("Words were not properly trimmed", true, word.equals(word.trim()));
 			assertEquals("Stream contained an empty string", false, word.equals(""));
 			assertEquals("Words were not all uppercase", true, word.equals(word.toUpperCase()));
@@ -65,6 +64,7 @@ public class GraphProcessorTest {
 	
 	@Test
 	public final void testPopulateGraph() {
+		gp = new GraphProcessor();
 		int numVertices = gp.populateGraph("word_list.txt");
 		assertEquals("number of vertices in graph doesn't match number of vertices added", 
 				vertices.size(), numVertices);
@@ -148,7 +148,7 @@ public class GraphProcessorTest {
 	    queue.add(start);
 	    while (!queue.isEmpty()) {
 	        current = queue.remove();
-		if (current.equals(finish)) break;
+	        if (current.equals(finish)) break;
 	        for (String child : graph.getNeighbors(current)) {
 	        	
 	            if (!visited.contains(child)){
