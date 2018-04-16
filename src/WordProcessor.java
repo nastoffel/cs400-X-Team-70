@@ -102,68 +102,23 @@ public class WordProcessor {
      */
 
     public static boolean isAdjacent(String word1, String word2) {
-
-        if (word1.equals(word2))
-            return false; // they are the same word so they are not adjacent
-
-        int aE = word1.length(); // Ending index of a
-        int bE = word2.length();
-
-        if(Math.abs(aE-bE)>1) return false;
-        
-
-        int aP = 0; // pointer to character in a
-        int bP = 0;
-
-        boolean foundDifference = false; // tracks whether a difference has been found
-        boolean iterate = true;
-        String filter = "GIMLETS";
-        if (word1.equals(filter)) {
-            System.out.println("                                                    : " + word1 + ", " + word2);
-        }
-
-        while (iterate) { // loop is exited with return statements (below) when an ending character is reached
-            if (word1.charAt(aP) != word2.charAt(bP)) { // a difference is detected
-                if (foundDifference) {  // a previous difference had been detcted, meaning this is the second difference.
-                    if (word1.equals(filter)) 
-                        System.out.println("    false: second error: " + word1 + ", " + word2);
-                    return false;
-                }
-                foundDifference = true;
-                
-
-                if (word2.length() > bP + 1 && word1.charAt(aP) == word2
-                                .charAt(bP + 1)) { // addition in b, advance b's charcater pointer
-                    if (word1.equals(filter))  
-                        System.out.println("      error: addition in b: " + word1.charAt(aP) + ", " + word2.charAt(bP)  + ", " + word1 + ", " + word2);
-                    bP++; 
-                } else if (word1.length() > aP + 1 && word1
-                                .charAt(aP + 1) == word2.charAt(bP)) { // addition in a, advance a's character pointer
-                    if (word1.equals(filter)) 
-                        System.out.println("      error: addition in a: " + word1.charAt(aP) + ", " + word2.charAt(bP) + ", " + word1 + ", " + word2);
-                    aP++; 
-                } else { // substitution, advance both pointers
-                    aP++;
-                    bP++;
-                } 
-            } else { // no difference in the current character, advance both pointers.
-                aP++;
-                bP++;
-            }
-
-            if (aP == aE && bP == bE) { // 0 or 1 errors detected and every character has been
-                                        // checked.
-                return true;
-            } else if (aP == aE || bP == bE) { // the end of one word has been reached and words are
-                                               // different lengths. Return true only if no previous
-                                               // errors have been found.
-                return (!foundDifference);
-            }
-
-        }
-
-        return false; // this line of code should never be reached because result is returned upon
-                      // while loop termination
-    }
+		if (word1.equals(word2)) return false;
+		int diff = word1.length()-word2.length();
+		int numChanges = 0;
+		int j = 0;
+		if (Math.abs(diff)>1) return false;
+		for (int i = 0; i < (diff>0 ? word2.length() : word1.length()) && numChanges <= 1; ++i) {
+			if (word1.charAt(i) != word2.charAt(i+j)) {
+				if (diff<0) {
+					if (word1.charAt(i) == word2.charAt(i+1)) j = (j==0?1:0);
+				}
+				else if (diff>0) {
+					if (word1.charAt(i+1) == word2.charAt(i)) j = (j==0?-1:0);
+				}
+				++numChanges;
+			}
+		}
+		return numChanges <= 1;
+	}
 
 }
