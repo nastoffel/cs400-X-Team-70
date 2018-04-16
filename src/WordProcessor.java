@@ -1,5 +1,7 @@
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -77,16 +79,13 @@ public class WordProcessor {
          */
 
 
-        Stream<String> wordStream;
-
-        wordStream = Files.lines(Paths.get(filepath));
+        Stream<String> wordStream = Files.lines(Paths.get(filepath));
 
         wordStream = wordStream.map(String::trim)
-            .filter(x -> x != null && !x.equals(""))
-            .map(String::toUpperCase); // makes all lines trimmed and uppercase. remove
+                        .filter(x -> x != null && !x.equals(""))
+                        .map(String::toUpperCase); // makes all lines trimmed and uppercase. remove
                                                    // null or empty lines
 
-        wordStream.close();
         return wordStream;
     }
 
@@ -107,7 +106,7 @@ public class WordProcessor {
         if (word1.equals(word2))
             return false; // they are the same word so they are not adjacent
 
-        System.out.println(word1 + ", " + word2);
+        // System.out.println(word1 + ", " + word2);
         int aE = word1.length(); // Ending index of a
         int bE = word2.length();
 
@@ -124,22 +123,27 @@ public class WordProcessor {
 
         while (iterate) {
             if (word1.charAt(aP) != word2.charAt(bP)) {
-                System.out.println("  " + word1.charAt(aP) + "!="
-                                + word2.charAt(bP));
+                //System.out.println("  " + word1.charAt(aP) + "!="
+                //                + word2.charAt(bP));
                 if (foundDifference) {
-                    System.out.println("    false: second error");
+                    //System.out.println("    false: second error");
                     return false;
                 }
                 foundDifference = true;
 
-                if (word1.charAt(aP) == word2.charAt(bP + 1)) {
-                    System.out.println("      error: addition in b");
+                if (word2.length() > bP + 1 && word1.charAt(aP) == word2
+                                .charAt(bP + 1)) {
+                    //System.out.println("      error: addition in b");
                     bP++; // b has extra
-                } else if (word1.charAt(aP + 1) == word2.charAt(bP)) {
-                    System.out.println("      error: addition in a");
+                } else if (word1.length() > aP + 1 && word1
+                                .charAt(aP + 1) == word2.charAt(bP)) {
+                    //System.out.println("      error: addition in a");
                     aP++; // a has extra
-                } else if (word1.charAt(aP + 1) == word2.charAt(bP + 1)) { // substitution
-                    System.out.println("      error: substitution");
+                } else if (word2.length() > bP + 1
+                                && word1.length() > aP + 1
+                                && word1.charAt(aP + 1) == word2
+                                                .charAt(bP + 1)) { // substitution
+                    //System.out.println("      error: substitution");
                     aP++;
                     bP++;
                 }
@@ -147,12 +151,16 @@ public class WordProcessor {
                 aP++;
                 bP++;
             }
-            
-            if (aP == aE && bP == bE) {
+
+            if (aP == aE && bP == bE) { // 0 or 1 errors detected and every character has been
+                                        // checked.
+                System.out.println(word1 + ", " + word2);
                 System.out.println("    true");
                 return true;
-            } else if (aP == aE || bP == bE) {
-                System.out.println("    " + (!foundDifference));
+            } else if (aP == aE || bP == bE) { // the end of one word has been reached and words are
+                                               // different lengths. Return true only if no previous
+                                               // errors have been found.
+                //System.out.println("    " + (!foundDifference));
                 return (!foundDifference);
             }
 
