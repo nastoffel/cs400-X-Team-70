@@ -27,11 +27,14 @@ public class GraphProcessorTest {
 	public static void setUpBeforeClass() throws Exception {
 		vertices = new ArrayList<>();
 		try {
-			vertices = WordProcessor.getWordStream("word_list.txt").collect(Collectors.toList());
+			List<String> words = 
+					WordProcessor.getWordStream("word_list.txt").collect(Collectors.toList());
+			for (String word : words) {
+				if (!vertices.contains(word)) vertices.add(word);
+			}
 		} catch (IOException e) {
 			System.out.println("Could not get word stream from word_list.txt");
 		}
-		System.out.println(vertices.size());
 	}
 
 	@AfterClass
