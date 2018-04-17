@@ -3,7 +3,7 @@
 // Title:           p4: Dictionary Graph
 // Files:           GraphProcessorTest.java, GraphProcessor.java, 
 //                  WordProcessor.java, Graph.java
-// Semester:		
+// Semester:        Spring 2018
 //
 // Authors:         Josh Stoecker, Jessie Steckling, Nick Stoffel, 
 //                  Stephen Squires III, Tyler Snoberger
