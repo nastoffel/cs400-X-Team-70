@@ -1,18 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import com.sun.scenario.effect.impl.prism.ps.PPSBlend_ADDPeer;
-
-// TODO: what happens if you look up shortest path when there is no path
-
 
 /**
  * This class adds additional functionality to the graph as a whole.
@@ -55,27 +46,46 @@ public class GraphProcessor {
                                                                                // nodes that form a
                                                                                // path, including
                                                                                // the source
-                                                                               // destination node
+                                                                               // destination node.
+                                                                               //
+                                                                               // The outer TreeMap
+                                                                               // DS assigns a
+                                                                               // source node key to
+                                                                               // a collection of
+                                                                               // paths from that
+                                                                               // node.
+                                                                               // The inner Treemap
+                                                                               // DS assigns a
+                                                                               // desination node
+                                                                               // key to a single
+                                                                               // path from the
+                                                                               // source to
+                                                                               // that destination.
 
-    class DijkstraTableRow implements Comparable<DijkstraTableRow> { // stores path information from
-                                                                     // one of several nodes to a
-                                                                     // specific destination
-                                                                     // node
-
-        public DijkstraTableRow(String destination) { // stores path information for specific source
-                                                      // and desination nodes
-            this.destination = destination;
-            this.visited = false;
-            this.totalWeight = Integer.MAX_VALUE;
-            this.pred = null;
-        }
-
+    /**
+     * Stores path information from one of several nodes to a specific destination node
+     */
+    class DijkstraTableRow implements Comparable<DijkstraTableRow> {
 
         String destination;
         boolean visited;
         int totalWeight;
         String pred;
 
+        /**
+         * Constructs a row which stores path metadata for Dijkstra's algorithms
+         */
+        private DijkstraTableRow(String destination) {
+            this.destination = destination;
+            this.visited = false;
+            this.totalWeight = Integer.MAX_VALUE;
+            this.pred = null;
+        }
+
+        /**
+         * Compares the paths of each of two nodes (this and other) to the same source node, on the
+         * basis of total path weight
+         */
         @Override
         public int compareTo(DijkstraTableRow other) {
             return other.totalWeight - this.totalWeight;
@@ -84,14 +94,12 @@ public class GraphProcessor {
 
 
     /**
-     * Constructor for this class. Initializes instances variables to set the starting state of the
-     * object
+     * Constructs a new instance of GraphProcessor with an empty graph data structure and an empty
+     * shortestPaths dictionary.
      */
     public GraphProcessor() {
         this.graph = new Graph<>();
-        // The outer TreeMap DS assigns a source node key to a collection of paths from that node.
-        // The inner Treemap DS assigns a desination node key to a single path from the source to
-        // that destination.
+
         this.shortestPaths =
                         new TreeMap<String, TreeMap<String, ArrayList<String>>>();
 
@@ -118,11 +126,11 @@ public class GraphProcessor {
         try {
             wordStream = WordProcessor.getWordStream(filepath);
         } catch (IOException e) {
-            e.printStackTrace();
             wordStream = Stream.empty();
         }
 
-        List<String> wordList = wordStream.collect(Collectors.toList());
+        List<String> wordList = wordStream.collect(Collectors.toList()); // create a list of from
+                                                                         // the text file.
 
         int s = wordList.size();
         for (int i = 0; i < s; i++) { // for each word in the list
@@ -131,8 +139,8 @@ public class GraphProcessor {
             if (graph.addVertex(word1) != null) // add the word to the graph
                 vtxCount++;
 
-            for (int j = 0; j < i; j++) { // add an edge between the new vertex and 
-                                          // each adjacent node in the graph
+            for (int j = 0; j < i; j++) { // add an edge between the new vertex and each adjacent
+                                          // node in the graph
                 String word2 = wordList.get(j);
                 if (WordProcessor.isAdjacent(word1, word2)) {
                     graph.addEdge(word1, word2);
@@ -140,27 +148,31 @@ public class GraphProcessor {
             }
         }
 
-        shortestPathPrecomputation();
+        shortestPathPrecomputation(); // stores shortest paths between each pair of nodes with valid
+                                      // a path, otherwise an empty list.
         return vtxCount;
     }
 
-
     /**
-     * Gets the list of words that create the shortest path between word1 and word2
+     * Gets the list of words that create the shortest path between word1 and word2.
      * 
      * Example: Given a dictionary, cat rat hat neat wheat kit shortest path between cat and wheat
      * is the following list of words: [cat, hat, heat, wheat]
      * 
      * @param word1 first word
      * @param word2 second word
-     * @return List<String> list of the words
+     * @return List<String> list of the words, including the source and desination, that form a
+     *         valid path.
      */
     public List<String> getShortestPath(String word1, String word2) {
-        if (!word1.equals(word2) && shortestPaths.containsKey(word1)
+        if (word1.equals(word2)) // words that are the same return an empty path
+            return new ArrayList<String>();
+        if (shortestPaths.containsKey(word1)
                         && shortestPaths.get(word1).containsKey(word2)) {
             return shortestPaths.get(word1).get(word2);
+        } else { // path does not exist between words. Return an empty path.
+            return new ArrayList<String>();
         }
-        return new ArrayList<String>();
     }
 
     /**
@@ -171,26 +183,34 @@ public class GraphProcessor {
      * 
      * @param word1 first word
      * @param word2 second word
-     * @return Integer distance
+     * @return Integer distance of the path, if a valid path exists. Return 0 for the same word.
+     *         Otherwise return -1.
      */
     public Integer getShortestDistance(String word1, String word2) {
-        if (word1.equals(word2)) return 0;
+        if (word1.equals(word2))
+            return 0; // the distance between a word and itsself is 0.
         return getShortestPath(word1, word2).size() - 1;
     }
 
     /**
      * Computes shortest paths and distances between all possible pairs of vertices. This method is
-     * called after every set of updates in the graph to recompute the path information. Any
-     * shortest path algorithm can be used (Djikstra's or Floyd-Warshall recommended).
+     * called after every set of updates in the graph to recompute the path information. Djikstra's
+     * algorithms is used.
+     * 
+     * Calls private helper methods generateDijkstraTables and evaluateShortestPaths
      */
     public void shortestPathPrecomputation() {
         TreeMap<String, TreeMap<String, DijkstraTableRow>> dijkstraTables =
                         generateDijkstraTables();
         evaluateShortestPaths(dijkstraTables);
-
     }
 
-    public TreeMap<String, TreeMap<String, DijkstraTableRow>> generateDijkstraTables() {
+    /**
+     * Private helper method which fills in a table information for Dijkstra's algorithm for
+     * shortest path computation including total weights between pairs of nodes and predecessors
+     * along paths.
+     */
+    private TreeMap<String, TreeMap<String, DijkstraTableRow>> generateDijkstraTables() {
         TreeMap<String, TreeMap<String, DijkstraTableRow>> dijkstraTables =
                         new TreeMap<String, TreeMap<String, DijkstraTableRow>>();
 
@@ -208,7 +228,6 @@ public class GraphProcessor {
                                 new DijkstraTableRow(destination));
             }
 
-
             dijkstraTableWithStartnode.get(source).totalWeight = 0;
 
             java.util.PriorityQueue<DijkstraTableRow> pq =
@@ -220,9 +239,9 @@ public class GraphProcessor {
                 DijkstraTableRow current = pq.remove(); // removes the minimum? ties?
                 current.visited = true;
 
-
                 for (String node : graph.getNeighbors(current.destination)) { // for each successor
                                                                               // of current
+              
                     int tempTotalWeight = dijkstraTableWithStartnode
                                     .get(current.destination).totalWeight + 1; // increment so
                                                                                // represent weight
@@ -239,12 +258,21 @@ public class GraphProcessor {
                     }
                 }
             }
+
             dijkstraTables.put(source, dijkstraTableWithStartnode);
         }
         return dijkstraTables;
     }
 
-    public void evaluateShortestPaths(
+    /**
+     * Private helper method which uses path predecessor information from dijkstra tables to compute
+     * the shortest path between each pair of nodes as a list. An empty list is created for pairs
+     * with no valid path. Path lists are stored in the GraphProcessor field shortestPath, which is
+     * a dictionary holding shortest path between each pair of nodes.
+     * 
+     * @param dijkstraTables is a dictionary containing path information to and from each word
+     */
+    private void evaluateShortestPaths(
                     TreeMap<String, TreeMap<String, DijkstraTableRow>> dijkstraTables) {
 
         for (String source : graph.getAllVertices()) { // for each source vertex
@@ -255,6 +283,7 @@ public class GraphProcessor {
                             new TreeMap<String, ArrayList<String>>();
 
             for (String destination : graph.getAllVertices()) { // for each destination vertex
+
                 ArrayList<String> path = new ArrayList<String>();
                 path.add(destination);
                 String pathNode = destination;
@@ -274,7 +303,7 @@ public class GraphProcessor {
                 }
                 pathsFromVertex.put(destination, path);
             }
-            this.shortestPaths.put(source, pathsFromVertex);
+            shortestPaths.put(source, pathsFromVertex);
         }
     }
 }
