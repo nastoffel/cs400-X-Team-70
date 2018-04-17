@@ -217,6 +217,9 @@ public class GraphProcessorTest {
 				+ "was different than expected", 26, pathLength);
 	}
 	
+	/**
+	 * Tests that getShortestDistance() does not throw an exception for words without an existing path
+	 */
 	@Test
     	public final void getShortestDistanceForNonexistantPathNoException() {
 		boolean threwException = false;
@@ -231,6 +234,9 @@ public class GraphProcessorTest {
 				false, threwException);
     	}
     
+	/**
+	 * Tests that getShortestDistance() returns -1 for words without an existing path
+	 */
     	@Test
 		public final void getShortestDistanceForNonexistant() {
 		int pathLength = gp.getShortestDistance("VANE", "SILO");
@@ -238,6 +244,9 @@ public class GraphProcessorTest {
 				-1, pathLength);
     	}
 
+	/**
+	 * Tests that getShortestPath() does not throw an exception for words without an existing path
+	 */
     	@Test
     	public final void getShortestPathForNonexistantPathNoException() {
 		boolean threwException = false;
@@ -252,6 +261,9 @@ public class GraphProcessorTest {
 		assertEquals("Shortest path between nodes without a path threw an exception: " + exceptionMessage, false, threwException);
     	}
 
+	/**
+	 * Tests that getShortestPath() an empty list for words without an existing path
+	 */
     	@Test
     	public final void getShortestPathForNonexistantPath() {
 		List<String> actual = gp.getShortestPath("VANE", "SILO");
