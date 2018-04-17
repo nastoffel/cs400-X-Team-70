@@ -21,7 +21,6 @@ import org.junit.Test;
  * @author Nick Stoffel
  * @author Stephen Squires III
  * @author Tyler Snoberger
- *
  */
 public class GraphProcessorTest {
 	
