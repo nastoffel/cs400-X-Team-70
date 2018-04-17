@@ -8,6 +8,10 @@ import java.util.stream.Stream;
  * This class contains some utility helper methods
  * 
  * @author Jessie Steckling (jsteckling@cs.wisc.edu)
+ * @author Nick Stoffel
+ * @author Stephen Squires III
+ * @author Tyler Snoberger
+ * @author Josh Stoecker
  */
 public class WordProcessor {
 
