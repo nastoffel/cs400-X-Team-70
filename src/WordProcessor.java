@@ -107,12 +107,12 @@ public class WordProcessor {
 		int numChanges = 0;
 		int j = 0;
 		if (Math.abs(diff)>1) return false;
-		for (int i = 0; i < (diff>0 ? word2.length() : word1.length()) && numChanges <= 1; ++i) {
+		for (int i = 0; i < word1.length() && i+j < word2.length(); ++i) {
 			if (word1.charAt(i) != word2.charAt(i+j)) {
 				if (diff<0) {
 					if (word1.charAt(i) == word2.charAt(i+1)) j = (j==0?1:0);
 				}
-				else if (diff>0) {
+				else if (i+1<word1.length() && diff>0) {
 					if (word1.charAt(i+1) == word2.charAt(i)) j = (j==0?-1:0);
 				}
 				++numChanges;
