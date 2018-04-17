@@ -223,15 +223,10 @@ public class GraphProcessor {
 
                 for (String node : graph.getNeighbors(current.destination)) { // for each successor
                                                                               // of current
-                    // if(!dijkstraTableWithStartnode.containsKey(node)) {
-                    // System.out.println("err: " + source + ", to " + node);
-                    // System.out.println(" adj: " + WordProcessor.isAdjacent(source, node));
-                    // break;
-                    // }
                     int tempTotalWeight = dijkstraTableWithStartnode
                                     .get(current.destination).totalWeight + 1; // increment so
                                                                                // represent weight
-                    // between current and node
+                                                                               // between current and node
 
                     if (tempTotalWeight < dijkstraTableWithStartnode
                                     .get(node).totalWeight) { // total weight can be reduced
