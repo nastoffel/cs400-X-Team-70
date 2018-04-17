@@ -1,13 +1,8 @@
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.junit.After;
@@ -16,12 +11,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
+/**
+ * Test class for GraphProcessor.java; tests basic functionality of GraphProcessor
+ * making sure that it can properly import words from a .txt file in the current
+ * directory and connects the words in the graph properly
+ * 
+ * @author Josh Stoecker (jstoecker@wisc.edu)
+ *
+ */
 public class GraphProcessorTest {
 	
-	private GraphProcessor gp;
+	private GraphProcessor gp;	//Holds instance of GraphProcessor for testing
 	
-	private static List<String> vertices;
+	private static List<String> vertices;	//Holds all the vertices that should be in the graph
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -53,6 +55,9 @@ public class GraphProcessorTest {
 		this.gp = null;
 	}
 	
+	/**
+	 * Tests that WordProcessor.getWordStream() properly formats the strings
+	 */
 	@Test
 	public final void testGetWordStream() {
 		for (String word : vertices) {
@@ -62,6 +67,9 @@ public class GraphProcessorTest {
 		}
 	}
 	
+	/**
+	 * Tests that populateGraph() returns the number of vertices inserted
+	 */
 	@Test
 	public final void testPopulateGraph() {
 		gp = new GraphProcessor();
@@ -70,14 +78,22 @@ public class GraphProcessorTest {
 				vertices.size(), numVertices);
 	}
 	
+	/**
+	 * Tests that getShortestPath() returns an empty list for the same word
+	 */
 	@Test
 	public final void getShortestPathSameWord() {
 		for (String word : vertices) {
 			List<String> shortestPath = gp.getShortestPath(word, word);
+			//System.out.println(shortestPath.get(0));
+			//System.out.println();
 			assertEquals("shortest path vertex list was not empty", true, shortestPath.isEmpty());
 		}
 	}
 	
+	/**
+	 * Tests that getShortestDistance() returns zero for the same word
+	 */
 	@Test
 	public final void getShortestDistanceSameWord() {
 		for (String word : vertices) {
@@ -86,108 +102,59 @@ public class GraphProcessorTest {
 		}
 	}
 	
-	
-	
+	/**
+	 * Tests that getShortestPath() returns the correct path for all adjacent words
+	 */
 	@Test
 	public final void getShortestPathAdjacentWords() {
 		for (String word1 : vertices) {
 			for (String word2 : vertices) {
 				if (WordProcessor.isAdjacent(word1, word2)) {
 					List<String> shortestPath = gp.getShortestPath(word1, word2);
-					int pathLength = gp.getShortestDistance(word1, word2);
+					int pathLength = shortestPath.size();
 					assertEquals("shortest path length was not 1", 
-							1, pathLength);
+							2, pathLength);
 					assertEquals("shortest path was different than expected", 
-							word2, shortestPath.get(0));
+							word2, shortestPath.get(1));
 				}
 			}
 		}
 	}
 	
-	@Test
-	public final void getShortestDistanceForModerateLengthPath() {
-		int actualDistance = gp.getShortestDistance("JELLIES", "FLEXING");
-		assertEquals("Calculated path distance is not equal to the expected", 
-				12, actualDistance);
-	}
-
-	@Test
-	public final void getShortestPathForModerateLengthPath() {
-		List<String> actual = gp.getShortestPath("JELLIES", "FLEXING");
-		String[] e = {"JELLIES", "JOLLIES", "COLLIES", "COLLINS", "COLLING", "COALING", "COAMING", "FOAMING", "FLAMING", "FLAKING", "FLUKING", "FLUXING", "FLEXING"};
-		ArrayList<String> expected = new ArrayList<String>();
-		for(String s : e) expected.add(s);
-		for (int i = 0; i < expected.size(); ++i) {
-		    assertEquals("shortest path between \"JELLIES\" and \"FLEXING\""
-			    + " differs at index " + i, expected.get(i), actual.get(i));
-		}
-	}
-	
+	/**
+	 * Tests that getShortestPath() returns correct path for non-adjacent words
+	 */
 	@Test
 	public final void getShortestPathDifferentWords() {
-		List<String> expected = shortestPath("COMEDO", "CHARGE");
-		List<String> actual = gp.getShortestPath("COMEDO", "CHARGE");
-		for (int i = 0; i < expected.size(); ++i) {
-			assertEquals("shortest path between \"COMEDO\" and \"CHARGE\""
-					+ " differs at index " + i, expected.get(i), actual.get(i));
-		}
-		expected = shortestPath("CHARGE", "GIMLETS");
-		actual = gp.getShortestPath("CHARGE", "GIMLETS");
-		for (int i = 0; i < expected.size(); ++i) {
-			assertEquals("shortest path between \"CHARGE\" and \"GIMLETS\""
-					+ " differs at index " + i, expected.get(i), actual.get(i));
-		}
-		expected = shortestPath("BELLIES", "JOLLIES");
-		actual = gp.getShortestPath("BELLIES", "JOLLIES");
-		for (int i = 0; i < expected.size(); ++i) {
+		try {
+			List<String> expected = WordProcessor.getWordStream(
+					"expected_path_comedo_charge.txt").collect(Collectors.toList());
+			List<String> actual = gp.getShortestPath("COMEDO", "CHARGE");
+			assertEquals("shortest path between \"COMEDO\" and \"CHARGE\" was different "
+					+ "than expected", expected, actual);
+			expected = WordProcessor.getWordStream("expected_path_charge_gimlets.txt").collect(
+					Collectors.toList());
+			actual = gp.getShortestPath("CHARGE", "GIMLETS");
+			assertEquals("shortest path between \"CHARGE\" and \"GIMLETS\" "
+					+ "was different than expected", expected, actual);
+			expected = WordProcessor.getWordStream("expected_path_bellies_jollies.txt").collect(
+					Collectors.toList());
+			actual = gp.getShortestPath("BELLIES", "JOLLIES");
 			assertEquals("shortest path between \"BELLIES\" and \"JOLLIES\" "
-					+ "differs at index " + i, expected.get(i), actual.get(i));
-		}
-		expected = shortestPath("DEFINE", "SHINNY");
-		actual = gp.getShortestPath("DEFINE", "SHINNY");
-		for (int i = 0; i < expected.size(); ++i) {
+					+ "was different than expected", expected, actual);
+			expected = WordProcessor.getWordStream("expected_path_define_shinny.txt").collect(
+					Collectors.toList());
+			actual = gp.getShortestPath("DEFINE", "SHINNY");
 			assertEquals("shortest path between \"DEFINE\" and \"SHINNY\" "
-					+ "differs at index " + i, expected.get(i), actual.get(i));
+					+ "was different than expected", expected, actual);
+		} catch (IOException e) {
+			System.out.println("Error loading one or more expected path files");
 		}
 	}
 	
-	private List<String> shortestPath(String start, String finish) {
-		Graph<String> graph = new Graph<String>();
-		for (String word1 : vertices) {
-			graph.addVertex(word1);
-			for (String word2 : graph.getAllVertices()) {
-				if (WordProcessor.isAdjacent(word1, word2)) graph.addEdge(word1, word2);
-			}
-		}
-		ArrayDeque<String> queue = new ArrayDeque<String>();
-		List<String> visited = new ArrayList<String>();
-		Map<String, String> prev = new HashMap<String, String>();
-		LinkedList<String> reversePath = new LinkedList<String>();
-		List<String> shortestPath = new ArrayList<String>();
-		String current = "";
-	    visited.add(start);
-	    queue.add(start);
-	    while (!queue.isEmpty()) {
-	        current = queue.remove();
-	        if (current.equals(finish)) break;
-	        for (String child : graph.getNeighbors(current)) {
-	        	
-	            if (!visited.contains(child)){
-	                visited.add(child);
-	                queue.add(child);
-	                prev.put(child, current);
-	            } // end if k not visited
-	        } // end for every successor k
-	    } // end while queue not empty
-	    if (!current.equals(finish)) return null;
-	    for (String word = finish; word != null; word = prev.get(word)) {
-	    	reversePath.add(word);
-	    }
-	    Iterator<String> descendingIterator = reversePath.descendingIterator();
-	    while (descendingIterator.hasNext()) shortestPath.add(descendingIterator.next());
-	    return shortestPath;
-	}
-	
+	/**
+	 * Tests that the correct path length is returned by getShortestDistance() for non-adjacent words
+	 */
 	@Test
 	public final void getShortestDistanceDifferentWords() {
 		int pathLength = gp.getShortestDistance("COMEDO", "CHARGE");
