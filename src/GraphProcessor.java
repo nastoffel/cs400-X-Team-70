@@ -31,7 +31,11 @@ import java.util.stream.Stream;
  *      {@link #shortestPathPrecomputation()} must have been invoked once before invoking this
  *      method.
  * 
- * @author Jessie Steckling (jsteckling@wisc.edu)
+ * @author Josh Stoecker (jstoecker@wisc.edu)
+ * @author Jessie Steckling
+ * @author Nick Stoffel
+ * @author Stephen Squires III
+ * @author Tyler Snoberger
  * 
  */
 public class GraphProcessor {
