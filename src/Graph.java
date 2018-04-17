@@ -1,10 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -13,7 +7,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @param <E>
  *            type of a vertex
  * 
- * @author sapan (sapan@cs.wisc.edu)
+ * @author Josh Stoecker (jstoecker@wisc.edu)
+ * @author Jessie Steckling
+ * @author Nick Stoffel
+ * @author Stephen Squires III
+ * @author Tyler Snoberger
  * 
  */
 public class Graph<E> implements GraphADT<E> {
@@ -238,7 +236,7 @@ class GraphNode<T> {
 	/**
 	 * constructs an empty GraphNode
 	 */
-	public GraphNode() {
+	protected GraphNode() {
 		vertex = null;
 		adjacencyList = new CopyOnWriteArrayList<T>();
 	}
@@ -249,12 +247,18 @@ class GraphNode<T> {
 	 * @param vertex
 	 *            the vertex of the new node
 	 */
-	public GraphNode(T vertex) {
+	protected GraphNode(T vertex) {
 		this.vertex = vertex;
 		adjacencyList = new CopyOnWriteArrayList<T>();
 	}
 
-	public T getVertex() {
+	/**
+	 * getter method for the vertex
+	 * 
+	 * @return vertex
+	 * 			   the vertex of the node
+	 */
+	protected T getVertex() {
 		return vertex;
 	}
 
@@ -265,7 +269,7 @@ class GraphNode<T> {
 	 *            the destination of the edge
 	 * @return the vertex passed in if an edge is created
 	 */
-	public T addEdge(T vertex) {
+	protected T addEdge(T vertex) {
 		if (adjacencyList.contains(vertex))
 			return null;
 		adjacencyList.add(vertex);
@@ -279,7 +283,7 @@ class GraphNode<T> {
 	 *            the destination of the edge to be removed
 	 * @return the vertx of the destination of the target if it is removed
 	 */
-	public T removeEdge(T vertex) {
+	protected T removeEdge(T vertex) {
 		if (adjacencyList.contains(vertex)) {
 			adjacencyList.remove(vertex);
 			return vertex;
@@ -287,7 +291,13 @@ class GraphNode<T> {
 			return null;
 	}
 
-	public CopyOnWriteArrayList<T> getEdges() {
+	/**
+	 * getter method for the adjacencyList
+	 * 
+	 * @return adjacencyList
+	 * 				returns the adjacency list for the node
+	 */
+	protected CopyOnWriteArrayList<T> getEdges() {
 		return adjacencyList;
 	}
 }
