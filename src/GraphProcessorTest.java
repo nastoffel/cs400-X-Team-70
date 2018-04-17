@@ -112,7 +112,7 @@ public class GraphProcessorTest {
 				if (WordProcessor.isAdjacent(word1, word2)) {
 					List<String> shortestPath = gp.getShortestPath(word1, word2);
 					int pathLength = shortestPath.size();
-					assertEquals("shortest path length was not 1", 
+					assertEquals("shortest path length was not 2", 
 							2, pathLength);
 					assertEquals("shortest path was different than expected", 
 							word2, shortestPath.get(1));
