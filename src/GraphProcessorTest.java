@@ -1,3 +1,17 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Title:           p4: Dictionary Graph
+// Files:           GraphProcessorTest.java, GraphProcessor.java, 
+//                  WordProcessor.java, Graph.java
+// Semester:		
+//
+// Authors:         Josh Stoecker, Jessie Steckling, Nick Stoffel, 
+//                  Stephen Squires III, Tyler Snoberger
+// Email:           jstoecker@wisc.edu
+// Lecturer's Name: Deb Deppeler
+//
+///////////////////////////////////////////////////////////////////////////////
+
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
