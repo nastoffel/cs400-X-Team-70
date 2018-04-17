@@ -1,3 +1,15 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Main Class File: GraphProcessorTest.java
+// File:            Graph.java
+// Semester:        Spring 2018
+//
+// Authors:         Jessie Steckling, Nick Stoffel, Stephen Squires III,
+//                  Tyler Snoberger, Josh Stoecker
+// Lecturer's Name: Deb Deppeler
+//
+///////////////////////////////////////////////////////////////////////////////
+
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
