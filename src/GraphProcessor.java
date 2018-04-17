@@ -131,8 +131,8 @@ public class GraphProcessor {
             if (graph.addVertex(word1) != null) // add the word to the graph
                 vtxCount++;
 
-            // add an edge between the new vertex and each adjacent node in the graph
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) { // add an edge between the new vertex and 
+                                          // each adjacent node in the graph
                 String word2 = wordList.get(j);
                 if (WordProcessor.isAdjacent(word1, word2)) {
                     graph.addEdge(word1, word2);
@@ -156,18 +156,11 @@ public class GraphProcessor {
      * @return List<String> list of the words
      */
     public List<String> getShortestPath(String word1, String word2) {
-        if(word1.equals(word2)) return new ArrayList<String>();
-        if (shortestPaths.containsKey(word1)
+        if (!word1.equals(word2) && shortestPaths.containsKey(word1)
                         && shortestPaths.get(word1).containsKey(word2)) {
             return shortestPaths.get(word1).get(word2);
-        } else {
-            System.out.println("path not in shortestPaths");
-            return new ArrayList<String>();
         }
-        // System.out.println(" shortest path " + word1 + ", " + word2);
-        // System.out.println(shortestPaths.size());
-        // System.out.println(shortestPaths.get(word1).size());
-        // System.out.println(shortestPaths.get(word1).get(word2).size());
+        return new ArrayList<String>();
     }
 
     /**
@@ -181,14 +174,8 @@ public class GraphProcessor {
      * @return Integer distance
      */
     public Integer getShortestDistance(String word1, String word2) {
-        if (getShortestPath(word1, word2).isEmpty()) {
-            if (!word1.equals(word2)) {
-                System.out.println("empty path: " + word1 + ", " + word2);
-            }
-            return 0;
-        }
+        if (word1.equals(word2)) return 0;
         return getShortestPath(word1, word2).size() - 1;
-
     }
 
     /**
@@ -252,18 +239,11 @@ public class GraphProcessor {
                                         tempTotalWeight;
                         dijkstraTableWithStartnode.get(node).pred =
                                         current.destination;
-                        if (source.equals("GIBBERS"))
-                            System.out.println(source + " to " + node
-                                            + " total weight update: "
-                                            + tempTotalWeight + ", pred:"
-                                            + current.destination);
                         if (!pq.contains(node))
                             pq.add(dijkstraTableWithStartnode.get(node));
                     }
                 }
-
             }
-
             dijkstraTables.put(source, dijkstraTableWithStartnode);
         }
         return dijkstraTables;
@@ -271,7 +251,6 @@ public class GraphProcessor {
 
     public void evaluateShortestPaths(
                     TreeMap<String, TreeMap<String, DijkstraTableRow>> dijkstraTables) {
-
 
         for (String source : graph.getAllVertices()) { // for each source vertex
             TreeMap<String, DijkstraTableRow> dijkstraCur =
@@ -281,19 +260,15 @@ public class GraphProcessor {
                             new TreeMap<String, ArrayList<String>>();
 
             for (String destination : graph.getAllVertices()) { // for each destination vertex
-
-
                 ArrayList<String> path = new ArrayList<String>();
                 path.add(destination);
                 String pathNode = destination;
-
 
                 while (!pathNode.equals(source)) { // iterates backwards through path to reach
                                                    // source
 
                     if (dijkstraCur.get(pathNode).pred == null) { // no availible path: return empty
                                                                   // list
-                        // System.out.println("no availible path");
                         path = new ArrayList<String>();
                         break;
                     } else {
@@ -306,7 +281,5 @@ public class GraphProcessor {
             }
             this.shortestPaths.put(source, pathsFromVertex);
         }
-
     }
-
 }
